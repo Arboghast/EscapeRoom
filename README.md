@@ -11,3 +11,4 @@ https://github.com/jperedadnr/RubikFX
 https://github.com/jperedadnr/RiggedHand
 https://github.com/jperedadnr/LeapV2
 https://www.lynda.com/Java-tutorials/3D-graphics-JavaFX/572154-2.html
+https://docs.oracle.com/javase/8/javafx/graphics-tutorial/sampleapp3d.htm
