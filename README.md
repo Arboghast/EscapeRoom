@@ -19,4 +19,5 @@ https://docs.oracle.com/javase/8/javafx/graphics-tutorial/sampleapp3d.htm
 JMONKEY STUFF:
 https://hub.jmonkeyengine.org/t/import-scene-in-jme/12392/4
 https://hub.jmonkeyengine.org/t/creating-a-room-help-me-please/12408/4
+https://jmonkeyengine.github.io/wiki/jme3/advanced/nifty_gui_java_interaction.html
 
