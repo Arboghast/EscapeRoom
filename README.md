@@ -12,3 +12,12 @@ https://github.com/jperedadnr/RiggedHand
 https://github.com/jperedadnr/LeapV2
 https://www.lynda.com/Java-tutorials/3D-graphics-JavaFX/572154-2.html
 https://docs.oracle.com/javase/8/javafx/graphics-tutorial/sampleapp3d.htm
+
+
+
+
+JMONKEY STUFF:
+https://hub.jmonkeyengine.org/t/import-scene-in-jme/12392/4
+https://hub.jmonkeyengine.org/t/creating-a-room-help-me-please/12408/4
+https://jmonkeyengine.github.io/wiki/jme3/advanced/nifty_gui_java_interaction.html
+
