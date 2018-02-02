@@ -96,6 +96,7 @@ public class iGame extends SimpleApplication {
         mat6.setColor("Color", ColorRGBA.Magenta);   // set color of material to blue
         geom6.setMaterial(mat6);                   // set the cube's material
         rootNode.attachChild(geom6);              // make the cube appear in the scene
+       
         getCollisionShape(geom1);
         getCollisionShape(geom2);
         getCollisionShape(geom3);

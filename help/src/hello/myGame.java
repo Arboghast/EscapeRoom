@@ -28,7 +28,7 @@ public class myGame extends SimpleApplication {
         Box d = new Box(1, 1, 4); // create cube shape
         Box e = new Box(4, 1, 4);
         Box f = new Box(4, 1, 4);
-        
+      
 
         Geometry geom1 = new Geometry("Box", a);  // create cube geometry from the shape
         
