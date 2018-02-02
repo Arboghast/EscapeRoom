@@ -30,7 +30,7 @@ public class objects extends SimpleApplication
 		Node pivot = new Node("pivot"); // creates node
 		rootNode.attachChild(pivot); //puts node in scene
 		
-		pivot.attachChild(blue);
+		//pivot.attachChild(blue);
 		
 		pivot.rotate(.4f, .4f, 0f);
 	}
