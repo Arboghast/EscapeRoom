@@ -24,7 +24,7 @@ public class hello
 		hello tracker =  new hello(CSV);
 		
 		//Run this line of code after you run the game, if you put it before running the game there will be no data to write into CSV
-		tracker.writeToCSV(name, time);
+		tracker.writeToCSV(name, Time);
 		
 		//Runs through the column of long times and searches for the shortest time and tells user
 		ArrayList<Long> data = new ArrayList<Long>();
