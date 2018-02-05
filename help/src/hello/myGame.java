@@ -22,17 +22,17 @@ public class myGame extends SimpleApplication {
     public void simpleInitApp() {
     	//flyCam.setEnabled(true);
     	flyCam.setMoveSpeed(25);
-        Box a = new Box(4, 1, 1); // create cube shape
-        Box b = new Box(4, 1, 1); // create cube shape
-        Box c = new Box(1, 1, 4); // create cube shape
-        Box d = new Box(1, 1, 4); // create cube shape
-        Box e = new Box(4, 1, 4);
-        Box f = new Box(4, 1, 4);
+        Box a = new Box(10, 2.5F, 1); // create cube shape red
+        Box b = new Box(10, 2.5F, 1); // create cube shape
+        Box c = new Box(1, 2.5F, 12); // create cube shape green
+        Box d = new Box(1, 2.5F, 12); // create cube shape
+        Box e = new Box(10, 1, 12);
+        Box f = new Box(10, 1, 12);
         
 
         Geometry geom1 = new Geometry("Box", a);  // create cube geometry from the shape
         
-        geom1.setLocalTranslation(new Vector3f(0,0,15));
+        geom1.setLocalTranslation(new Vector3f(0,0,22));
 
         Material mat1 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -41,7 +41,7 @@ public class myGame extends SimpleApplication {
         rootNode.attachChild(geom1);              // make the cube appear in the scene
         Geometry geom2 = new Geometry("Box", b);  // create cube geometry from the shape
         
-        geom2.setLocalTranslation(new Vector3f(0,0,5));
+        geom2.setLocalTranslation(new Vector3f(0,0,-2));
 
         Material mat2 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -50,7 +50,7 @@ public class myGame extends SimpleApplication {
         rootNode.attachChild(geom2);              // make the cube appear in the scene
         Geometry geom3 = new Geometry("Box", c);  // create cube geometry from the shape
         
-        geom3.setLocalTranslation(new Vector3f(-5,0,10));
+        geom3.setLocalTranslation(new Vector3f(-10,0,10)); 
         
         Material mat3 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -59,7 +59,7 @@ public class myGame extends SimpleApplication {
         rootNode.attachChild(geom3);              // make the cube appear in the scene
         Geometry geom4 = new Geometry("Box", d);  // create cube geometry from the shape
         
-        geom4.setLocalTranslation(new Vector3f(5,0,10));
+        geom4.setLocalTranslation(new Vector3f(10,0,10));
 
         Material mat4 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -68,7 +68,7 @@ public class myGame extends SimpleApplication {
         rootNode.attachChild(geom4);              // make the cube appear in the scene
         Geometry geom5 = new Geometry("Box", e);  // create cube geometry from the shape
         
-        geom5.setLocalTranslation(new Vector3f(0,2,10));
+        geom5.setLocalTranslation(new Vector3f(0,3,10));
 
         Material mat5 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
