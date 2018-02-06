@@ -56,7 +56,7 @@ public class testcollision extends SimpleApplication
     setUpLight();
 
     // We load the scene from the zip file and adjust its size.
-    assetManager.registerLocator("lo.zip", ZipLocator.class);
+    assetManager.registerLocator("town.zip", ZipLocator.class);
     sceneModel = assetManager.loadModel("main.scene");
     sceneModel.setLocalScale(2f);
 
@@ -77,7 +77,7 @@ public class testcollision extends SimpleApplication
     player.setJumpSpeed(20);
     player.setFallSpeed(30);
     player.setGravity(30);
-    player.setPhysicsLocation(new Vector3f(0, 10, 0));
+    player.setPhysicsLocation(new Vector3f(0, 100, 0));
 
     // We attach the scene and the player to the rootnode and the physics space,
     // to make them appear in the game world.
