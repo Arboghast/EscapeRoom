@@ -8,14 +8,13 @@ import com.jme3.bullet.collision.shapes.CompoundCollisionShape;
 import com.jme3.bullet.collision.shapes.HullCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 
 /** Sample 1 - how to get started with the most simple JME 3 application.
  * Display a blue 3D cube and view from all sides by
@@ -39,12 +38,19 @@ public class iGame extends SimpleApplication {
         Box c = new Box(1, 1, 4); // create cube shape
         Box d = new Box(1, 1, 4); // create cube shape
         Box e = new Box(4, 1, 4);
-        Box f = new Box(4, 1, 4);
+        Box f = new Box(4, 1, 4);  
         
+        CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
+        player = new CharacterControl(capsuleShape, 0.05f);
+        player.setJumpSpeed(20);
+        player.setFallSpeed(30);
+        player.setGravity(30);
+        player.setPhysicsLocation(new Vector3f(0, 10, 0));
 
         Geometry geom1 = new Geometry("Box", a);  // create cube geometry from the shape
         
         geom1.setLocalTranslation(new Vector3f(0,0,15));
+        geom1.addControl(new RigidBodyControl(0.0fs));
 
         Material mat1 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -54,6 +60,7 @@ public class iGame extends SimpleApplication {
         Geometry geom2 = new Geometry("Box", b);  // create cube geometry from the shape
         
         geom2.setLocalTranslation(new Vector3f(0,0,5));
+        geom2.addControl(new RigidBodyControl(0.0f));
 
         Material mat2 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -63,6 +70,7 @@ public class iGame extends SimpleApplication {
         Geometry geom3 = new Geometry("Box", c);  // create cube geometry from the shape
         
         geom3.setLocalTranslation(new Vector3f(-5,0,10));
+        geom3.addControl(new RigidBodyControl(0.0f));
         
         Material mat3 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
@@ -72,7 +80,8 @@ public class iGame extends SimpleApplication {
         Geometry geom4 = new Geometry("Box", d);  // create cube geometry from the shape
         
         geom4.setLocalTranslation(new Vector3f(5,0,10));
-
+        geom4.addControl(new RigidBodyControl(0.0f));
+        
         Material mat4 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
         mat4.setColor("Color", ColorRGBA.Yellow);   // set color of material to blue
@@ -81,7 +90,8 @@ public class iGame extends SimpleApplication {
         Geometry geom5 = new Geometry("Box", e);  // create cube geometry from the shape
         
         geom5.setLocalTranslation(new Vector3f(0,2,10));
-
+        geom5.addControl(new RigidBodyControl(0.0f));
+        
         Material mat5 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
         mat5.setColor("Color", ColorRGBA.Cyan);   // set color of material to blue
@@ -90,7 +100,8 @@ public class iGame extends SimpleApplication {
         Geometry geom6 = new Geometry("Box", f);  // create cube geometry from the shape
         
         geom6.setLocalTranslation(new Vector3f(0,-2,10));
-
+        geom6.addControl(new RigidBodyControl(0.0f));
+        
         Material mat6 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
         mat6.setColor("Color", ColorRGBA.Magenta);   // set color of material to blue
