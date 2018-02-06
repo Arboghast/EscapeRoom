@@ -84,7 +84,7 @@ public class myGame extends SimpleApplication implements ActionListener{
         mat1.setColor("Color", ColorRGBA.Red);   // set color of material to blue
         geom1.setMaterial(mat1);   
         
-        assetManager.registerLocator("roomcolour.zip", ZipLocator.class);
+        assetManager.registerLocator("test.zip", ZipLocator.class);
         sceneModel = assetManager.loadModel("roomcoloured.scene");
         sceneModel.setLocalScale(2f);
         
@@ -112,7 +112,7 @@ Is that the cause to this error? Do I have missed something?
         player.setJumpSpeed(20);
         player.setFallSpeed(30);
         player.setGravity(30);
-        player.setPhysicsLocation(new Vector3f(0, 500, 0));
+        player.setPhysicsLocation(new Vector3f(0, 10, 0));
 
         // We attach the scene and the player to the rootnode and the physics space,
         // to make them appear in the game world.
@@ -135,7 +135,7 @@ Is that the cause to this error? Do I have missed something?
 
       /** We over-write some navigational key mappings here, so we can
        * add physics-controlled walking and jumping: */
-    /*  private void setUpKeys() {
+      private void setUpKeys() {
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_W));
@@ -146,7 +146,7 @@ Is that the cause to this error? Do I have missed something?
         inputManager.addListener(this, "Up");
         inputManager.addListener(this, "Down");
         inputManager.addListener(this, "Jump");
-      }*/
+      }
       public void onAction(String binding, boolean value, float tpf) {
     	    if (binding.equals("Left")) {
     	      if (value) { left = true; } else { left = false; }
