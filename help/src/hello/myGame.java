@@ -84,8 +84,8 @@ public class myGame extends SimpleApplication implements ActionListener{
         mat1.setColor("Color", ColorRGBA.Red);   // set color of material to blue
         geom1.setMaterial(mat1);   
         
-        assetManager.registerLocator("ogretest.zip", ZipLocator.class);
-        sceneModel = assetManager.loadModel("roomuncoloured.scene");
+        assetManager.registerLocator("roomcolour.zip", ZipLocator.class);
+        sceneModel = assetManager.loadModel("roomcoloured.scene");
         sceneModel.setLocalScale(2f);
         
         /*
@@ -112,7 +112,7 @@ Is that the cause to this error? Do I have missed something?
         player.setJumpSpeed(20);
         player.setFallSpeed(30);
         player.setGravity(30);
-        player.setPhysicsLocation(new Vector3f(0, 500, 0));
+        player.setPhysicsLocation(new Vector3f(0, 50, 0));
 
         // We attach the scene and the player to the rootnode and the physics space,
         // to make them appear in the game world.
