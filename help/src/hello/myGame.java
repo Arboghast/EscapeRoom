@@ -84,9 +84,8 @@ public class myGame extends SimpleApplication implements ActionListener{
         mat1.setColor("Color", ColorRGBA.Red);   // set color of material to blue
         geom1.setMaterial(mat1);   
         
-        assetManager.registerLocator("test.zip", ZipLocator.class);
-        sceneModel = assetManager.loadModel("roomcoloured.scene");
-        sceneModel.setLocalScale(2f);
+        Spatial ninja = assetManager.loadModel("assets/models/roomcoloured.scene");
+        rootNode.attachChild(ninja);
         
         /*
          * Thank you Nehon for your response. Really appreciate your advise on following problem as well.
