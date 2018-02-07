@@ -58,7 +58,7 @@ public class Main extends SimpleApplication
 
     // We load the scene from the zip file and adjust its size.
     sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
-    sceneModel.setLocalScale(2f);
+    sceneModel.setLocalScale(6f);
 
     // We set up collision detection for the scene by creating a
     // compound collision shape and a static RigidBodyControl with mass zero.
@@ -74,10 +74,10 @@ public class Main extends SimpleApplication
     // We also put the player in its starting position.
     CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
     player = new CharacterControl(capsuleShape, 0.05f);
-    player.setJumpSpeed(20);
+    player.setJumpSpeed(10);
     player.setFallSpeed(30);
     
-    player.setPhysicsLocation(new Vector3f(0, 200, 0));
+    player.setPhysicsLocation(new Vector3f(0, 4, 0));
 
     // We attach the scene and the player to the rootnode and the physics space,
     // to make them appear in the game world.
