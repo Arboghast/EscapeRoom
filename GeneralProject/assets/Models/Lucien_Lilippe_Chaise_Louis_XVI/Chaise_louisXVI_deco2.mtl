@@ -1,0 +1,53 @@
+# Blender MTL File: 'Chaise_louisXVI.blend'
+# Material Count: 5
+
+newmtl Bois
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.595960 0.440787
+Ks 0.255639 0.255639 0.255639
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Dos_b
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump Chaise_dos_texture.png
+map_Kd Chaise_dos_texture.png
+
+newmtl Or
+Ns 232.394323
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.278650 0.043887
+Ks 1.000000 1.000000 1.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Siege_b
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump Chaise_siege_text.png
+map_Kd Chaise_siege_text.png
+
+newmtl Toile
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump toile.jpg
+map_Kd toile.jpg
