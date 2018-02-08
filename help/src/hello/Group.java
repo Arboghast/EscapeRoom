@@ -41,7 +41,7 @@ public class Group extends SimpleApplication {
         Box f = new Box(4, 1, 4);  
         
         CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
-        player = new CharacterControl(capsuleShape, 0.05f);
+        CharacterControl player = new CharacterControl(capsuleShape, 0.05f);
         player.setJumpSpeed(20);
         player.setFallSpeed(30);
         player.setGravity(30);
@@ -50,7 +50,7 @@ public class Group extends SimpleApplication {
         Geometry geom1 = new Geometry("Box", a);  // create cube geometry from the shape
         
         geom1.setLocalTranslation(new Vector3f(0,0,15));
-        geom1.addControl(new RigidBodyControl(0.0fs));
+        geom1.addControl(new RigidBodyControl(0.0f));
 
         Material mat1 = new Material(assetManager,
           "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
