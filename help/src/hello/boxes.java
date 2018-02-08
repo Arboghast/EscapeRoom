@@ -10,10 +10,10 @@ import com.jme3.math.Vector3f;
 /** Sample 1 - how to get started with the most simple JME 3 application.
  * Display a blue 3D cube and view from all sides by
  * moving the mouse and pressing the WASD keys. */
-public class iGame extends SimpleApplication {
+public class boxes extends SimpleApplication {
 
     public static void main(String[] args){
-        iGame app = new iGame();
+    	boxes app = new boxes();
         app.start(); // start the game
     }
 
