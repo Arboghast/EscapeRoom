@@ -1,4 +1,6 @@
 package hello;
+import java.util.ArrayList;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
@@ -18,6 +20,7 @@ public class buttonPuzzles extends SimpleApplication {
 	
 	private Geometry geom;
 	private final static Trigger mouseClick = new MouseButtonTrigger(MouseInput.BUTTON_LEFT);
+	private ArrayList<Geometry> boxes = new ArrayList<Geometry>(); 
 	private final static String  MAPPING_COLOR = "Toggle color";
 	private boolean toggled =  false;
 	private boolean isCreated = false;
@@ -38,6 +41,7 @@ public class buttonPuzzles extends SimpleApplication {
 	        rootNode.attachChild(geom);
 	        int x = 15;
 	        geom.setLocalTranslation(new Vector3f(x * i,0,0));
+	        boxes.add(geom);
 		}
 		
 	}
@@ -46,33 +50,16 @@ public class buttonPuzzles extends SimpleApplication {
         	System.out.println("Mapping detected (discrete): "+name );
         	if(!isPressed)
         	{
-        		if (!isCreated) {
-					Sphere sphereMesh = new Sphere(32, 32, 2f);
-					geom = new Geometry("Sphere", sphereMesh);
-					Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        		for(int i = 0; i <= boxes.size(); i++)
+        		{
+        			Geometry abox = boxes.get(i);
+        			Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
 					mat.setColor("Color", ColorRGBA.Red);
-					geom.setMaterial(mat);
-					rootNode.attachChild(geom);
-					isCreated = true;
-					trigger++;
-				}
-				if (!toggled) {
-					//geom.getMaterial().setColor("Color", ColorRGBA.Red);
-					toggled = true;
-					geom.getMaterial().setColor("Color", ColorRGBA.Red);
-					long i = System.nanoTime();
-					System.out.println(i);
-					trigger++;
-
-				} else {
-					toggled = false;
-					geom.getMaterial().setColor("Color", ColorRGBA.Blue);
-					long i = System.nanoTime();
-					System.out.println(i);
-					trigger++;
-
-				} 
+					abox.setMaterial(mat);
+					rootNode.attachChild(abox);
+        		}
         	}
+        		
    	 }
    };
 	public static void main(String[] args){
