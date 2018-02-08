@@ -23,7 +23,7 @@ import com.jme3.math.Vector3f;
 public class iGame extends SimpleApplication {
 
     public static void main(String[] args){
-        myGame app = new myGame();
+        iGame app = new iGame();
         app.start(); // start the game
         
     }
