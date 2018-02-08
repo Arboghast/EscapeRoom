@@ -19,10 +19,10 @@ import com.jme3.scene.shape.Box;
 /** Sample 1 - how to get started with the most simple JME 3 application.
  * Display a blue 3D cube and view from all sides by
  * moving the mouse and pressing the WASD keys. */
-public class iGame extends SimpleApplication {
+public class Group extends SimpleApplication {
 
     public static void main(String[] args){
-        iGame app = new iGame();
+    	Group app = new Group();
         app.start(); // start the game
         
     }
