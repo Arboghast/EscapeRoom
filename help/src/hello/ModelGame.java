@@ -40,7 +40,7 @@ import com.jme3.scene.Spatial;
 /** Sample 1 - how to get started with the most simple JME 3 application.
  * Display a blue 3D cube and view from all sides by
  * moving the mouse and pressing the WASD keys. */
-public class myGame extends SimpleApplication implements ActionListener{
+public class ModelGame extends SimpleApplication implements ActionListener{
 	
 	  private Spatial sceneModel;
 	  private BulletAppState bulletAppState;
@@ -54,7 +54,7 @@ public class myGame extends SimpleApplication implements ActionListener{
 
 
     public static void main(String[] args){
-        myGame app = new myGame();
+    	ModelGame app = new ModelGame();
         app.start(); // start the game
         
     }
