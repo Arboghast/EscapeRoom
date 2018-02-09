@@ -21,38 +21,7 @@ import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
 
 public class iI extends SimpleApplication{
-	/*public static void main(String[]args)
-	{
-		Node node = null;
-		Camera flyCam = null;
-		Vector2f mouseLoc = inputManager.getCursorPosition().clone();
-		pick(flyCam,mouseLoc, node);
-	}
-	private static CollisionResult pick(Camera cam, Vector2f mouseLoc, Node node) {
-
-		CollisionResults results = new CollisionResults();
-
-		Ray ray = new Ray();
-
-		Vector3f pos = cam.getWorldCoordinates(mouseLoc, 0).clone();
-
-		Vector3f dir = cam.getWorldCoordinates(mouseLoc, 0.1f).clone();
-
-		dir.subtractLocal(pos).normalizeLocal();
-
-		ray.setOrigin(pos);
-
-		ray.setDirection(dir);
-
-		//node.collideWith(ray, results);
-
-		CollisionResult result = results.getClosestCollision();
-
-		return result;
-
-		}	*/
 	
-
 		  public static void main(String[] args) {
 		    iI app = new iI();
 		    app.start();
@@ -73,22 +42,21 @@ public class iI extends SimpleApplication{
 		    shootables.attachChild(makeCube("a tin can", 1f, -2f, 0f));
 		    shootables.attachChild(makeCube("the Sheriff", 0f, 1f, -2f));
 		    shootables.attachChild(makeCube("the Deputy", 1f, 0f, -4f));
-		    shootables.attachChild(makeFloor());
-		    shootables.attachChild(makeCharacter());
+		    //shootables.attachChild(makeCharacter());
 		  }
 
 		  /** Declaring the "Shoot" action and mapping to its triggers. */
 		  private void initKeys() {
-		    inputManager.addMapping("Shoot",
+		    inputManager.addMapping("Detect",
 		      new KeyTrigger(KeyInput.KEY_SPACE), // trigger 1: spacebar
 		      new MouseButtonTrigger(MouseInput.BUTTON_LEFT)); // trigger 2: left-button click
-		    inputManager.addListener(actionListener, "Shoot");
+		    inputManager.addListener(actionListener, "Detect");
 		  }
 		  /** Defining the "Shoot" action: Determine what was hit and how to respond. */
 		  private ActionListener actionListener = new ActionListener() {
 
 		    public void onAction(String name, boolean keyPressed, float tpf) {
-		      if (name.equals("Shoot") && !keyPressed) {
+		      if (name.equals("Detect") && !keyPressed) {
 		        // 1. Reset results list.
 		        CollisionResults results = new CollisionResults();
 		        // 2. Aim the ray from cam loc to cam direction.
@@ -100,11 +68,11 @@ public class iI extends SimpleApplication{
 		        System.out.println("----- Collisions? " + results.size() + "-----");
 		        for (int i = 0; i < results.size(); i++) {
 		          // For each hit, we know distance, impact point, name of geometry.
-		          float dist = results.getCollision(i).getDistance();
-		          Vector3f pt = results.getCollision(i).getContactPoint();
-		          String hit = results.getCollision(i).getGeometry().getName();
+		         // float dist = results.getCollision(i).getDistance();
+		          Vector3f pt = results.getCollision(i).getContactPoint();  //point where object is 'clicked on
+		          String hit = results.getCollision(i).getGeometry().getName(); //name of the object
 		          System.out.println("* Collision #" + i);
-		          System.out.println("  You shot " + hit + " at " + pt + ", " + dist + " wu away.");
+		          System.out.println("  You shot " + hit + " at " + pt + ". " );
 		        }
 		        // 5. Use the results (we mark the hit object)
 		        if (results.size() > 0) {
@@ -132,17 +100,6 @@ public class iI extends SimpleApplication{
 		    return cube;
 		  }
 
-		  /** A floor to show that the "shot" can go through several objects. */
-		  protected Geometry makeFloor() {
-		    Box box = new Box(15, .2f, 15);
-		    Geometry floor = new Geometry("the Floor", box);
-		    floor.setLocalTranslation(0, -4, -5);
-		    Material mat1 = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-		    mat1.setColor("Color", ColorRGBA.Gray);
-		    floor.setMaterial(mat1);
-		    return floor;
-		  }
-
 		  /** A red ball that marks the last spot that was "hit" by the "shot". */
 		  protected void initMark() {
 		    Sphere sphere = new Sphere(30, 30, 0.2f);
@@ -164,7 +121,7 @@ public class iI extends SimpleApplication{
 		    guiNode.attachChild(ch);
 		  }
 
-		  protected Spatial makeCharacter() {
+		 /* protected Spatial makeCharacter() {
 		    // load a character from jme3test-test-data
 		    Spatial golem = assetManager.loadModel("Models/Oto/Oto.mesh.xml");
 		    golem.scale(0.5f);
@@ -176,5 +133,17 @@ public class iI extends SimpleApplication{
 		    golem.addLight(sun);
 		    return golem;
 		  }
+			*/
+		  protected Spatial makeCharacter() {
+			    // load a character from jme3test-test-data
+			    Spatial golem = assetManager.loadModel("Models/Door/Door.mesh.xml");
+			    golem.scale(0.5f);
+			    golem.setLocalTranslation(-1.0f, -1.5f, -0.6f);
 
+			    // We must add a light to make the model visible
+			   // DirectionalLight sun = new DirectionalLight();
+			   // sun.setDirection(new Vector3f(-0.1f, -0.7f, -1.0f));
+			   // golem.addLight(sun);
+			    return golem;
+		  }
 }
