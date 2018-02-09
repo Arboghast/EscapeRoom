@@ -66,17 +66,20 @@ public class Main extends SimpleApplication
 	    stateManager.attach(bulletAppState);
 	    //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 	    
-	    StartScreen screenControl3 = (StartScreen) nifty.getScreen("hud").getScreenController();
-	    stateManager.attach((AppState) screenControl3);
+	//    StartScreen screenControl3 = (StartScreen) nifty.getScreen("hud").getScreenController();
+	//    stateManager.attach((AppState) screenControl3);
 
 	    // We re-use the flyby camera for rotation, while positioning is handled by physics
 	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+	    flyCam.setEnabled(true);
 	    flyCam.setMoveSpeed(90);
 	    setUpKeys();
 	    
 
 	    // We load the scene from the zip file and adjust its size.
-	    sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
+	    assetManager.registerLocator("town.zip", ZipLocator.class);
+	    sceneModel = assetManager.loadModel("main.scene");
+	  //  sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
 	    sceneModel.setLocalScale(6f);
 
 	    // We set up collision detection for the scene by creating a
@@ -113,7 +116,8 @@ public class Main extends SimpleApplication
 	  
 	  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	  // https://github.com/kimlercorey/ninjahunter/blob/master/src/cmsc325/finalProject/NinjaHunter.java
-	  flyCam.setDragToRotate(true);
+	//  flyCam.setDragToRotate(true);
+	  flyCam.setEnabled(false);
 	  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
       nifty = display.getNifty();
       nifty.addXml("Interface/Start.xml");

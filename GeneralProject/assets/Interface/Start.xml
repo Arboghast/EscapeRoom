@@ -30,7 +30,7 @@
         </panel>
     </layer>
   </screen>
-  <screen id="hud">
+  <screen id="hud" controller="mygame.StartScreen">
     <layer id="background" backgroundColor="#000f">
       <!-- ... -->
     </layer>
