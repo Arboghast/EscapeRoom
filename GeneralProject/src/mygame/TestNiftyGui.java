@@ -1,4 +1,4 @@
-package hello;
+package mygame;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -33,7 +33,7 @@ public class TestNiftyGui extends SimpleApplication {
     nifty.loadControlFile("nifty-default-controls.xml");
 
     nifty.addScreen("start", new ScreenBuilder("start") {{
-        controller(new hello.StartScreen());
+        controller(new mygame.StartScreen());
         layer(new LayerBuilder("background") {{
             childLayoutCenter();
             backgroundColor("#000f");
