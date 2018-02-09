@@ -97,9 +97,9 @@ public class buttonPuzzles extends SimpleApplication {
 		        		
 		   	 }
 		   };
-		   private ActionListener actionsListener3 = new ActionListener() {
-			   	 public void onAction(String name, boolean isPressed, float tpf) {
-			        	System.out.println("4 done");
+    private ActionListener actionsListener3 = new ActionListener() {
+		public void onAction(String name, boolean isPressed, float tpf) {
+			        System.out.println("4 done");
 			        	if(removed == 3)
 			        	{
 			        		rootNode.detachChild(geom3); // removes the object
