@@ -35,9 +35,6 @@ public class buttonPuzzles extends SimpleApplication {
 		// TODO Auto-generated method stub
 		inputManager.addMapping(MAPPING_COLOR, mouseClick);
 		inputManager.addListener(actionsListener, new String[]{MAPPING_COLOR});
-		inputManager.addListener(actionsListener1, new String[]{MAPPING_COLOR});
-		inputManager.addListener(actionsListener2, new String[]{MAPPING_COLOR});
-		inputManager.addListener(actionsListener3, new String[]{MAPPING_COLOR});
 			Box mesh = new Box(3, 3, 3);
 	        geom = new Geometry("Box", mesh);
 	        Material mat = new Material(assetManager,
@@ -68,46 +65,31 @@ public class buttonPuzzles extends SimpleApplication {
    	 public void onAction(String name, boolean isPressed, float tpf) {
         	System.out.println("one done" + removed);
         	if(!isPressed)
-        	{
-        		rootNode.detachChild(geom);// removes the object 
-        		removed += 1;
-        	}
-        		
-   	 }
-   };
-   private ActionListener actionsListener1 = new ActionListener() {
-	   	 public void onAction(String name, boolean isPressed, float tpf) {
-	        	System.out.println("2 done"+ removed);
-	        	if(removed == 1)
+        	{	
+	        	if(removed == 0)
+	        	{
+	        		rootNode.detachChild(geom);// removes the object 
+	        		removed += 1;
+	        	}
+	        	else if(removed == 1)
 	        	{
 	        		rootNode.detachChild(geom1); // removes the object
 	        		removed += 1;
 	        	}
-	        		
-	   	 }
-	   };
-	private ActionListener actionsListener2 = new ActionListener() {
-		public void onAction(String name, boolean isPressed, float tpf) {
-		        	System.out.println("3 done"+ removed);
-		        	if(removed == 2)
-		        	{
-		        		rootNode.detachChild(geom2); // removes the object 
-		        		removed += 1;
-		        	}
-		        		
-		   	 }
-		   };
-    private ActionListener actionsListener3 = new ActionListener() {
-		public void onAction(String name, boolean isPressed, float tpf) {
-			        System.out.println("4 done"+ removed);
-			        	if(removed == 3)
-			        	{
-			        		rootNode.detachChild(geom3); // removes the object
-			        		removed = 4;
-			        	}
-			        		
-			   	 }
-			   };	   
+	        	else if(removed == 2)
+	        	{
+	        		rootNode.detachChild(geom2); // removes the object 
+	        		removed += 1;
+	        	}
+	        	else if(removed == 3)
+	        	{
+	        		rootNode.detachChild(geom3); // removes the object
+	        		removed = 4;
+	        	}
+        	}
+        		
+   	 }
+   };   
 		   
 	public static void main(String[] args){
     	buttonPuzzles app = new buttonPuzzles();
