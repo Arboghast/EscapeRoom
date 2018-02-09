@@ -66,40 +66,40 @@ public class buttonPuzzles extends SimpleApplication {
 	}
 	private ActionListener actionsListener = new ActionListener() {
    	 public void onAction(String name, boolean isPressed, float tpf) {
-        	System.out.println("one done");
+        	System.out.println("one done" + removed);
         	if(!isPressed)
         	{
         		rootNode.detachChild(geom);// removes the object 
-        		removed = 1;
+        		removed += 1;
         	}
         		
    	 }
    };
    private ActionListener actionsListener1 = new ActionListener() {
 	   	 public void onAction(String name, boolean isPressed, float tpf) {
-	        	System.out.println("2 done");
+	        	System.out.println("2 done"+ removed);
 	        	if(removed == 1)
 	        	{
 	        		rootNode.detachChild(geom1); // removes the object
-	        		removed = 2;
+	        		removed += 1;
 	        	}
 	        		
 	   	 }
 	   };
 	private ActionListener actionsListener2 = new ActionListener() {
 		public void onAction(String name, boolean isPressed, float tpf) {
-		        	System.out.println("3 done");
+		        	System.out.println("3 done"+ removed);
 		        	if(removed == 2)
 		        	{
 		        		rootNode.detachChild(geom2); // removes the object 
-		        		removed = 3;
+		        		removed += 1;
 		        	}
 		        		
 		   	 }
 		   };
     private ActionListener actionsListener3 = new ActionListener() {
 		public void onAction(String name, boolean isPressed, float tpf) {
-			        System.out.println("4 done");
+			        System.out.println("4 done"+ removed);
 			        	if(removed == 3)
 			        	{
 			        		rootNode.detachChild(geom3); // removes the object
