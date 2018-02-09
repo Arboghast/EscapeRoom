@@ -16,8 +16,11 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+
+import de.lessvoid.nifty.Nifty;
 
 /**
  * Example 9 - How to make walls and floors solid.
@@ -33,6 +36,8 @@ public class Main extends SimpleApplication
   private CharacterControl player;
   private Vector3f walkDirection = new Vector3f();
   private boolean left = false, right = false, up = false, down = false;
+  Nifty nifty;
+  TestNiftyGui screenControl;
   
   //Temporary vectors used on each frame.
   //They here to avoid instanciating new vectors on each frame
@@ -44,46 +49,57 @@ public class Main extends SimpleApplication
     app.start();
   }
 
+  public void loadGame()
+  {
+	  bulletAppState = new BulletAppState();
+	    stateManager.attach(bulletAppState);
+	    //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+
+	    // We re-use the flyby camera for rotation, while positioning is handled by physics
+	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+	    flyCam.setMoveSpeed(90);
+	    setUpKeys();
+	    
+
+	    // We load the scene from the zip file and adjust its size.
+	    sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
+	    sceneModel.setLocalScale(6f);
+
+	    // We set up collision detection for the scene by creating a
+	    // compound collision shape and a static RigidBodyControl with mass zero.
+	    CollisionShape sceneShape =
+	            CollisionShapeFactory.createMeshShape((Node) sceneModel);
+	    landscape = new RigidBodyControl(sceneShape, 0);
+	    sceneModel.addControl(landscape);
+
+	    // We set up collision detection for the player by creating
+	    // a capsule collision shape and a CharacterControl.
+	    // The CharacterControl offers extra settings for
+	    // size, stepheight, jumping, falling, and gravity.
+	    // We also put the player in its starting position.
+	    CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
+	    player = new CharacterControl(capsuleShape, 0.05f);
+	    player.setJumpSpeed(10);
+	    player.setFallSpeed(30);
+	    
+	    player.setPhysicsLocation(new Vector3f(0, 4, 0));
+
+	    // We attach the scene and the player to the rootnode and the physics space,
+	    // to make them appear in the game world.
+	    rootNode.attachChild(sceneModel);
+	    bulletAppState.getPhysicsSpace().add(landscape);
+	    bulletAppState.getPhysicsSpace().add(player);
+  }
   public void simpleInitApp() {
     /** Set up Physics */
-    bulletAppState = new BulletAppState();
-    stateManager.attach(bulletAppState);
-    //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
-
-    // We re-use the flyby camera for rotation, while positioning is handled by physics
-    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-    flyCam.setMoveSpeed(90);
-    setUpKeys();
-    
-
-    // We load the scene from the zip file and adjust its size.
-    sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
-    sceneModel.setLocalScale(6f);
-
-    // We set up collision detection for the scene by creating a
-    // compound collision shape and a static RigidBodyControl with mass zero.
-    CollisionShape sceneShape =
-            CollisionShapeFactory.createMeshShape((Node) sceneModel);
-    landscape = new RigidBodyControl(sceneShape, 0);
-    sceneModel.addControl(landscape);
-
-    // We set up collision detection for the player by creating
-    // a capsule collision shape and a CharacterControl.
-    // The CharacterControl offers extra settings for
-    // size, stepheight, jumping, falling, and gravity.
-    // We also put the player in its starting position.
-    CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
-    player = new CharacterControl(capsuleShape, 0.05f);
-    player.setJumpSpeed(10);
-    player.setFallSpeed(30);
-    
-    player.setPhysicsLocation(new Vector3f(0, 4, 0));
-
-    // We attach the scene and the player to the rootnode and the physics space,
-    // to make them appear in the game world.
-    rootNode.attachChild(sceneModel);
-    bulletAppState.getPhysicsSpace().add(landscape);
-    bulletAppState.getPhysicsSpace().add(player);
+	  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
+      nifty = display.getNifty();
+      nifty.addXml("Interface/xmlNameGoes.xml");
+      nifty.gotoScreen("start");
+      screenControl = (MyStartScreen) nifty.getScreen("start").getScreenController();
+      stateManager.attach((AppState) screenControl);
+      guiViewPort.addProcessor(display);
+   
   }
 
   

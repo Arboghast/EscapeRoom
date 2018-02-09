@@ -22,20 +22,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
   private Node localRootNode = new Node("Start Screen RootNode");
   private Node localGuiNode = new Node("Start Screen GuiNode");
   private final ColorRGBA backgroundColor = ColorRGBA.Gray;
+  Nifty nifty;
+  private Screen screen;
+  private ModelGame app;
     
     
-    public StartScreen(SimpleApplication app){
-        this.rootNode     = app.getRootNode();
-        this.viewPort     = app.getViewPort();
-        this.guiNode      = app.getGuiNode();
-        this.assetManager = app.getAssetManager();
+    public StartScreen(){
+       
       }
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
-        super.initialize(stateManager, app);
-        rootNode.attachChild(localRootNode);
-        guiNode.attachChild(localGuiNode);
-        viewPort.setBackgroundColor(backgroundColor);
+    	 super.initialize(stateManager, app);
+         this.app = (ModelGame) app;
         //TODO: initialize your AppState, e.g. attach spatials to rootNode
         //this is called on the OpenGL thread after the AppState has been attached
     }
@@ -55,16 +53,26 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         //e.g. remove all spatials from rootNode
         //this is called on the OpenGL thread after the AppState has been detached
     }
+    public void startGame(String nextScreen) {
+    	nifty.gotoScreen(nextScreen);
+      }
 
+      public void quitGame() {
+        app.stop();
+      }
+
+    
+    
     public void bind(Nifty nifty, Screen screen) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    	this.nifty = nifty;
+        this.screen = screen;
     }
 
     public void onStartScreen() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     public void onEndScreen() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 }
