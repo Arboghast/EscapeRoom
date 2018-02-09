@@ -48,7 +48,7 @@ public class buttonPuzzles extends SimpleApplication {
         	System.out.println("Mapping detected (discrete): "+name );
         	if(!isPressed)
         	{
-        		rootNode.detachChild(geom);
+        		rootNode.detachChild(geom); // removes the object 
         	}
         		
    	 }
