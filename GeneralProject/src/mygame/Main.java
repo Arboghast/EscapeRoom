@@ -10,6 +10,7 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -28,6 +29,7 @@ import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
+import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.DefaultScreenController;
 
 /**
@@ -46,12 +48,14 @@ public class Main extends SimpleApplication
   private boolean left = false, right = false, up = false, down = false;
   Nifty nifty;
   StartScreen screenControl;
-  private boolean isRunning = false;
+  public boolean isRunning = false;
   
   //Temporary vectors used on each frame.
   //They here to avoid instanciating new vectors on each frame
   private Vector3f camDir = new Vector3f();
   private Vector3f camLeft = new Vector3f();
+  private long timer = 0;
+  private int duration = -1; //1 second delay for game to load
 
   public static void main(String[] args) {
     Main app = new Main();
@@ -61,25 +65,27 @@ public class Main extends SimpleApplication
   public void loadGame()
   {
       
+     System.out.println("loadGame");
+     
+     inputManager.setCursorVisible(false);
      
 	  bulletAppState = new BulletAppState();
 	    stateManager.attach(bulletAppState);
 	    //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 	    
-	//    StartScreen screenControl3 = (StartScreen) nifty.getScreen("hud").getScreenController();
-	//    stateManager.attach((AppState) screenControl3);
+	    StartScreen screenControl3 = (StartScreen) nifty.getScreen("hud").getScreenController();
+	    stateManager.attach((AppState) screenControl3);
 
 	    // We re-use the flyby camera for rotation, while positioning is handled by physics
 	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 	    flyCam.setEnabled(true);
 	    flyCam.setMoveSpeed(90);
-	    setUpKeys();
 	    
+	    setUpKeys();
+	    initCrossHairs();
 
 	    // We load the scene from the zip file and adjust its size.
-	    assetManager.registerLocator("town.zip", ZipLocator.class);
-	    sceneModel = assetManager.loadModel("main.scene");
-	  //  sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
+	    sceneModel = assetManager.loadModel("Models/roomcoloured.j3o");
 	    sceneModel.setLocalScale(6f);
 
 	    // We set up collision detection for the scene by creating a
@@ -108,7 +114,7 @@ public class Main extends SimpleApplication
 	    bulletAppState.getPhysicsSpace().add(player);
 	    
 	    
-	    
+	    System.out.println("loadGame");
 	    isRunning = true;
   }
   public void simpleInitApp() {
@@ -240,7 +246,17 @@ public class Main extends SimpleApplication
       
    
   
-
+  protected void initCrossHairs() {
+      guiNode.detachAllChildren();
+      guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+      BitmapText ch = new BitmapText(guiFont, false);
+      ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
+      ch.setText("+");
+      ch.setLocalTranslation(
+              settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
+              settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
+      guiNode.attachChild(ch);
+  }
   
 
   /** We over-write some navigational key mappings here, so we can
@@ -283,6 +299,7 @@ public class Main extends SimpleApplication
    */
   @Override
     public void simpleUpdate(float tpf) {
+	  System.out.println("update");
         if (isRunning) {
 			camDir.set(cam.getDirection()).multLocal(0.6f);
 			camLeft.set(cam.getLeft()).multLocal(0.4f);
@@ -301,6 +318,24 @@ public class Main extends SimpleApplication
 			}
 			player.setWalkDirection(walkDirection);
 			cam.setLocation(player.getPhysicsLocation());
+			
+			//checks time
+			if (System.currentTimeMillis() - timer >= 1000) {
+	               // Every second
+				 duration++;
+	             timer = System.currentTimeMillis();
+	        }
+			
+			//update HUD Display
+			int hours = duration/60;
+			String formattedH = String.format("%02d", hours);
+			
+			int minutes = duration - (60*hours);
+			String formattedM = String.format("%02d", minutes);
+			
+			nifty.getCurrentScreen().findElementByName("time")
+			.getRenderer(TextRenderer.class)
+			.setText("Time Spent: " + formattedH + ":" + formattedM);
 		}
     }
 }
