@@ -50,7 +50,7 @@
       </panel>
     </layer>
   </screen>
-   <screen id="endgame" controller="mygame.StartScreen">
+   <screen id="endgame" controller="mygame.EndScreen">
     <layer id="background" backgroundColor="#000f">
       <!-- ... -->
     </layer>

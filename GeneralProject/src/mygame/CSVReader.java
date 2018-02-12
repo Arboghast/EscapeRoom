@@ -11,17 +11,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class hello
+public class CSVReader
 {
 	private ArrayList<String> CSVData;
 	private int numColumns;
 	
 	
 	public static void main(String[] args)
-	{
+	{	
 		//Creates CSV tracking file
 		File CSV = new File("EscapeRoomScoreSheet.csv");
-		hello tracker =  new hello(CSV);
+		CSVReader tracker =  new CSVReader(CSV);
 		
 		//s
 		
@@ -43,7 +43,7 @@ public class hello
     	}
     	System.out.println("\nCurrent fastest time is " + min/1000 + "seconds");
 	}
-	public hello(File CSV)
+	public CSVReader(File CSV)
 	{
 		Path pathToFile = Paths.get(CSV.getAbsolutePath());
 		this.CSVData = new ArrayList<String>();
