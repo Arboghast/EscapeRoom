@@ -43,7 +43,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         //TODO: implement behavior during runtime
     }
 
-    
+    public void gotoScreen(String nextScreen)
+    {
+    	nifty.gotoScreen(nextScreen);
+    }
     public void startGame(String nextScreen) {
     	nifty.gotoScreen(nextScreen);
     	app.loadGame();

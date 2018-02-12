@@ -180,115 +180,7 @@ public class Main extends SimpleApplication
       stateManager.attach((AppState) screenControl);
       guiViewPort.addProcessor(display); 
 	    
-	/*  flyCam.setDragToRotate(true);
-	  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
-      nifty = display.getNifty();
-      
-      nifty.loadStyleFile("nifty-default-styles.xml");
-      nifty.loadControlFile("nifty-default-controls.xml");
-
-      nifty.addScreen("start", new ScreenBuilder("start") {{
-          controller(new mygame.StartScreen());
-          layer(new LayerBuilder("background") {{
-              childLayoutCenter();
-              backgroundColor("#000f");
-              // <!-- ... -->
-          }});
-
-          layer(new LayerBuilder("foreground") {{
-                  childLayoutVertical();
-                  backgroundColor("#0000");
-
-              // panel added
-                  panel(new PanelBuilder("panel_top") {{
-                      childLayoutCenter();
-                      alignCenter();
-                      backgroundColor("#f008");
-                      height("25%");
-                      width("75%");
-
-                      // add text
-                      text(new TextBuilder() {{
-                          text("The Escape Room");
-                          font("Interface/Fonts/Default.fnt");
-                          height("100%");
-                          width("100%");
-                      }});
-
-                  }});
-              
-
-                  panel(new PanelBuilder("panel_mid") {{
-                      childLayoutCenter();
-                      alignCenter();
-                      backgroundColor("#0f08");
-                      height("50%");
-                      width("75%");
-                      // add text
-                      text(new TextBuilder() {{
-                          text("Here goes some text describing the game and the rules and stuff. "+
-                               "Incidentally, the text is quite long and needs to wrap at the end of lines. ");
-                          font("Interface/Fonts/Default.fnt");
-                          wrap(true);
-                          height("100%");
-                          width("100%");
-                      }});
-
-                  }});
-
-              panel(new PanelBuilder("panel_bottom") {{
-                  childLayoutHorizontal();
-                  alignCenter();
-                  backgroundColor("#00f8");
-                  height("25%");
-                  width("75%");
-
-                  panel(new PanelBuilder("panel_bottom_left") {{
-                      childLayoutCenter();
-                      valignCenter();
-                      backgroundColor("#44f8");
-                      height("50%");
-                      width("50%");
-
-                      // add control
-                      control(new ButtonBuilder("StartButton", "Start") {{
-                        alignCenter();
-                        valignCenter();
-                        height("50%");
-                        width("50%");
-                        visibleToMouse(true);
-                        interactOnClick("startGame(hud)");
-                      }});
-
-                  }});
-
-                  panel(new PanelBuilder("panel_bottom_right") {{
-                      childLayoutCenter();
-                      valignCenter();
-                      backgroundColor("#88f8");
-                      height("50%");
-                      width("50%");
-
-                      // add control
-                      control(new ButtonBuilder("QuitButton", "Quit") {{
-                        alignCenter();
-                        valignCenter();
-                        height("50%");
-                        width("50%");
-                        visibleToMouse(true);
-                        interactOnClick("quitGame()");
-                      }});
-
-                  }});
-              }}); // panel added
-          }});
-
-      }}.build(nifty));
-      
-      nifty.gotoScreen("start");
-      screenControl = (StartScreen) nifty.getScreen("start").getScreenController();
-      stateManager.attach((AppState) screenControl);
-      guiViewPort.addProcessor(display); */
+	
 	    
   }
       
@@ -438,6 +330,14 @@ public class Main extends SimpleApplication
 			
 			
 			//Code To trigger Endgame Screen
+			if(removed == 4)
+			{
+				flyCam.setEnabled(false);
+				isRunning = false;
+				nifty.gotoScreen("endgame");
+				StartScreen screenControl3 = (StartScreen) nifty.getScreen("endgame").getScreenController();
+				stateManager.attach((AppState) screenControl3);
+			}
 		}
     }
 }
