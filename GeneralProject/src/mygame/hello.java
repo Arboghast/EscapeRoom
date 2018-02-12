@@ -1,4 +1,4 @@
-package csv;
+package mygame;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,7 +26,7 @@ public class hello
 		//s
 		
 		//Run this line of code after you run the game, if you put it before running the game there will be no data to write into CSV
-		tracker.writeToCSV(name, Time);
+		//tracker.writeToCSV(name, Time);
 		
 		//Runs through the column of long times and searches for the shortest time and tells user
 		ArrayList<Long> data = new ArrayList<Long>();
