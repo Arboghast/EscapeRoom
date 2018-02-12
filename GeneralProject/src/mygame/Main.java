@@ -10,6 +10,7 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
@@ -20,6 +21,7 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Geometry;
@@ -131,7 +133,7 @@ public class Main extends SimpleApplication
 	    // to make them appear in the game world.
 	    
 		Box mesh = new Box(1, 1, 1);
-	    geom = new Geometry("Box", mesh);
+	    geom = new Geometry("geom0", mesh);
 	    Material mat = new Material(assetManager,
 	            "Common/MatDefs/Misc/Unshaded.j3md");
 	    mat.setColor("Color", ColorRGBA.Blue);
@@ -139,18 +141,18 @@ public class Main extends SimpleApplication
 	    rootNode.attachChild(geom);
 	    geom.setLocalTranslation(new Vector3f(15,1,30));
 	    
-	    geom1 = new Geometry("Box", mesh);
+	    geom1 = new Geometry("geom1", mesh);
 	    geom1.setMaterial(mat);
 	    rootNode.attachChild(geom1);
 	    geom1.setLocalTranslation(new Vector3f(15,1,-30));
 	    
 
-	    geom2 = new Geometry("Box", mesh);
+	    geom2 = new Geometry("geom2", mesh);
 	    geom2.setMaterial(mat);
 	    rootNode.attachChild(geom2);
 	    geom2.setLocalTranslation(new Vector3f(15,1,15));
 	    
-	    geom3 = new Geometry("Box", mesh);
+	    geom3 = new Geometry("geom3", mesh);
 	    geom3.setMaterial(mat);
 	    rootNode.attachChild(geom3);
 	    geom3.setLocalTranslation(new Vector3f(15,1,-15));
@@ -325,7 +327,25 @@ public class Main extends SimpleApplication
   
   private ActionListener actionsListener = new ActionListener() {
 	   	 public void onAction(String name, boolean isPressed, float tpf) {
+	   		CollisionResults results = new CollisionResults();
+	   		Ray ray = new Ray(cam.getLocation(), cam.getDirection());
+	   		rootNode.collideWith(ray, results);
+	   		
+		          // For each hit, we know distance, impact point, name of geometry.
+		         // float dist = results.getCollision(i).getDistance();
+		          Vector3f pt = results.getCollision(0).getContactPoint();  //point where object is 'clicked on
+		          String hit = results.getCollision(0).getGeometry().getName(); //name of the object
+		          System.out.println("  You shot " + hit + " at " + pt + ". " );
 	        	System.out.println("one done" + removed);
+	        	if(!isPressed)
+	        	{
+	        		if(hit.equals("geom0")||hit.equals("geom1")||hit.equals("geom2")||hit.equals("geom3"))
+	        		{
+	        			rootNode.detachChild(results.getCollision(0).getGeometry());
+	        		}
+	        	
+	        	}
+	        	/*
 	        	if(!isPressed)
 	        	{	
 		        	if(removed == 0)
@@ -348,9 +368,9 @@ public class Main extends SimpleApplication
 		        		rootNode.detachChild(geom3); // removes the object
 		        		removed = 4;
 		        	}
-	        	}
-	        		
-	   	 }
+	        	} 
+	        	*/	
+	   	 	}
 	   };   
 	   
   /** These are our custom actions triggered by key presses.
@@ -378,7 +398,7 @@ public class Main extends SimpleApplication
    */
   @Override
     public void simpleUpdate(float tpf) {
-	  System.out.println("update");
+	  //System.out.println("update");
         if (isRunning) {
 			camDir.set(cam.getDirection()).multLocal(0.6f);
 			camLeft.set(cam.getLeft()).multLocal(0.4f);
