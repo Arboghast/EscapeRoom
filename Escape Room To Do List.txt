@@ -1,0 +1,9 @@
+To-Do List
+
+Ray Collision for the buttons(Sidney and Ahnaf)
+
+Add models/furnitures to the escape room
+
+Connect Endgame CSV reader and scoreboard(Jason and Sadman)
+
+Style the Start, hud, and endgame Screens(Ivy)
