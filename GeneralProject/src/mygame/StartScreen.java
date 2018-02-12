@@ -24,7 +24,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
   private final ColorRGBA backgroundColor = ColorRGBA.Gray;
   Nifty nifty;
   private Screen screen;
-  private Main app;
+  private XML app;
     
     
     public StartScreen(){
@@ -33,7 +33,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
     	 super.initialize(stateManager, app);
-         this.app = (Main) app;
+         this.app = (XML) app;
         //TODO: initialize your AppState, e.g. attach spatials to rootNode
         //this is called on the OpenGL thread after the AppState has been attached
     }
