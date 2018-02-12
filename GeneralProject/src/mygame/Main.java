@@ -234,6 +234,7 @@ public class Main extends SimpleApplication
 	        		if(hit.equals("geom0")||hit.equals("geom1")||hit.equals("geom2")||hit.equals("geom3"))
 	        		{
 	        			rootNode.detachChild(results.getCollision(0).getGeometry());
+	        			
 	        		}
 	        	
 	        	}
