@@ -23,25 +23,17 @@ public class CSVReader
 		File CSV = new File("EscapeRoomScoreSheet.csv");
 		CSVReader tracker =  new CSVReader(CSV);
 		
-		//s
-		
 		//Run this line of code after you run the game, if you put it before running the game there will be no data to write into CSV
-		//tracker.writeToCSV(name, Time);
+		//tracker.writeToCSV("name as a string", number of minutes as int, number of seconds as int);
 		
-		//Runs through the column of long times and searches for the shortest time and tells user
-		ArrayList<Long> data = new ArrayList<Long>();
-		data = (ArrayList<Long>) tracker.getLongData(1);
-    	
-    	Long min = data.get(0);
-    	
-    	for(int i=1; i<data.size(); i++)
-    	{
-    		if(data.get(i) < min)
-    		{
-    			min = data.get(i);
-    		}
-    	}
-    	System.out.println("\nCurrent fastest time is " + min/1000 + "seconds");
+		//Testing the getRowData function, should return an arrayList of all strings with row information
+		ArrayList<String> data = (ArrayList<String>) tracker.getRowData();
+		
+		System.out.println(data.size());
+		//for(int i=0; i<data.size(); i++)
+		//{
+		//	System.out.println(data.get(i));
+		//}
 	}
 	public CSVReader(File CSV)
 	{
@@ -74,7 +66,7 @@ public class CSVReader
 			ioe.printStackTrace();
 		}
 	}
-	public void writeToCSV(String name, long time)
+	public void writeToCSV(String name, int minutes, int seconds)
 	{
 		PrintWriter pw = null;
 		
@@ -99,19 +91,58 @@ public class CSVReader
 			}
 		}
 		this.CSVData.add(name);
-		this.CSVData.add(Long.toString(time));
-		sb.append(name +","+ Long.toString(time) +"\n");
+		this.CSVData.add(Integer.toString(minutes));
+		this.CSVData.add(Integer.toString(seconds));
+		sb.append(name +","+ Integer.toString(minutes) + "," + Integer.toString(seconds) + "\n");
 		pw.write(sb.toString());
 		pw.close();
 	}
-	public List<Long> getLongData(int column)
+	public ArrayList<String> getRowData()
 	{
-		ArrayList<Long> columnDataLong = new ArrayList<Long>();
+		ArrayList<String> getRowData = new ArrayList<String>();
+		
+		//System.out.println("Size: " + this.CSVData.size());
+		
+		for(int i=3; i<this.CSVData.size()-3; i=i+3)
+		{
+			String name = getNameData().get(i);
+			int minutes = getMinutesData().get(i+1);
+			int seconds = getSecondsData().get(i+2);
+			
+			getRowData.add("Player " +name+ " has completed the game in " +minutes+ " minutes and " +seconds+" seconds.");
+		}
+		return getRowData;
+	}
+	public List<String> getNameData()
+	{
+		return getStringData(0);
+	}
+	public List<Integer> getMinutesData()
+	{
+		return getIntegerData(1);
+	}
+	public List<Integer> getSecondsData()
+	{
+		return getIntegerData(2);
+	}
+	public List<String> getStringData(int column)
+	{
+		ArrayList<String> columnDataString = new ArrayList<String>();
 		
 		for(int i=column + this.numColumns; i<this.CSVData.size(); i = i + this.numColumns)
 		{
-			columnDataLong.add(Long.parseLong(this.CSVData.get(i)));
+			columnDataString.add((this.CSVData.get(i)));
 		}
-		return columnDataLong;
+		return columnDataString;
+	}
+	public List<Integer> getIntegerData(int column)
+	{
+		ArrayList<Integer> columnDataInteger = new ArrayList<Integer>();
+		
+		for(int i=column + this.numColumns; i<this.CSVData.size(); i = i + this.numColumns)
+		{
+			columnDataInteger.add(Integer.parseInt(this.CSVData.get(i)));
+		}
+		return columnDataInteger;
 	}
 }
