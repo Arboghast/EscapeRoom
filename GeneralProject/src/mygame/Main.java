@@ -323,7 +323,7 @@ public class Main extends SimpleApplication
 			String formattedH = String.format("%02d", minutes);
 			
 			int seconds = duration - (60*minutes);
-			String formattedM = String.format("%02d", minutes);
+			String formattedM = String.format("%02d", seconds);
 			
 			nifty.getCurrentScreen().findElementByName("time")
 			.getRenderer(TextRenderer.class)

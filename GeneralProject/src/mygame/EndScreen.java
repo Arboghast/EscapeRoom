@@ -1,5 +1,7 @@
 package mygame;
 
+import java.io.File;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -63,6 +65,9 @@ public class EndScreen extends AbstractAppState implements ScreenController {
     public void submitScore()
     {
     	String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
+    	File CSV = new File("EscapeRoomScoreSheet.csv");
+		CSVReader tracker =  new CSVReader(CSV);
+    	tracker.writeToCSV(input,this.seconds,this.minutes);
     	nifty.gotoScreen("scoreboard");
     }
     public void quitGame() {
