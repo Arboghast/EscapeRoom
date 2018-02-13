@@ -10,6 +10,8 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.controls.TextField;
+import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
@@ -25,6 +27,8 @@ public class EndScreen extends AbstractAppState implements ScreenController {
   Nifty nifty;
   private Screen screen;
   private XML app;
+  private int seconds;
+  private int minutes;
     
     
     public EndScreen(){
@@ -47,10 +51,20 @@ public class EndScreen extends AbstractAppState implements ScreenController {
     {
     	nifty.gotoScreen(nextScreen);
     }
+    public void addScore(int minutes, int seconds)
+    {
+    	this.seconds = seconds;
+    	this.minutes = minutes;
+    }
     public void startGame(String nextScreen) {
     	
     }
-
+    
+    public void submitScore()
+    {
+    	String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
+    	nifty.gotoScreen("scoreboard");
+    }
     public void quitGame() {
       app.stop();
     }

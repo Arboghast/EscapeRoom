@@ -57,7 +57,6 @@ public class XML extends SimpleApplication{
     XML app = new XML();
     app.start();
   }
-
   public void simpleInitApp() {
     
 	  flyCam.setEnabled(false);
@@ -66,6 +65,7 @@ public class XML extends SimpleApplication{
       nifty.addXml("Interface/End.xml");
       nifty.gotoScreen("endgame");
       screenControl = (EndScreen) nifty.getScreen("endgame").getScreenController();
+      screenControl.addScore(1, 1);
       stateManager.attach((AppState) screenControl);
       guiViewPort.addProcessor(display); 
 	    

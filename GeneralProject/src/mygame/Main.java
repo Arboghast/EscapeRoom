@@ -319,10 +319,10 @@ public class Main extends SimpleApplication
 	        }
 			
 			//update HUD Display
-			int hours = duration/60;
-			String formattedH = String.format("%02d", hours);
+			int minutes = duration/60;
+			String formattedH = String.format("%02d", minutes);
 			
-			int minutes = duration - (60*hours);
+			int seconds = duration - (60*minutes);
 			String formattedM = String.format("%02d", minutes);
 			
 			nifty.getCurrentScreen().findElementByName("time")
@@ -337,6 +337,7 @@ public class Main extends SimpleApplication
 				isRunning = false;
 				nifty.gotoScreen("endgame");
 				StartScreen screenControl3 = (StartScreen) nifty.getScreen("endgame").getScreenController();
+				//screenControl.addScore(1, 1); Use this to pass in game time to csv
 				stateManager.attach((AppState) screenControl3);
 			}
 		}
