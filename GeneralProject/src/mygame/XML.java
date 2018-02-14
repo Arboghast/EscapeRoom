@@ -51,7 +51,7 @@ import com.jme3.input.controls.MouseButtonTrigger;
 public class XML extends SimpleApplication
 {
 	Nifty nifty;
-	EndScreen screenControl;
+	ScreenManager screenControl;
 		
 	public static void main(String[] args) 
 	{
@@ -66,7 +66,7 @@ public class XML extends SimpleApplication
 	      nifty = display.getNifty();
 	      nifty.addXml("Interface/End.xml");
 	      nifty.gotoScreen("scoreboard");
-	      screenControl = (EndScreen) nifty.getScreen("scoreboard").getScreenController();
+	      screenControl = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();
 	      screenControl.addScore(1, 1);
 	      stateManager.attach((AppState) screenControl);
 	      guiViewPort.addProcessor(display);

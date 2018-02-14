@@ -1,4 +1,4 @@
-package mygame;
+package hello;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -10,6 +10,7 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.screen.DefaultScreenController;
+import mygame.ScreenManager;
 
 /**
  * @author iamcreasy
