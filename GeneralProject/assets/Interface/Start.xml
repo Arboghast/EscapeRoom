@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
-  <useStyles filename="nifty-default-styles.xml" />
+    <useStyles filename="nifty-default-styles.xml" />
   <useControls filename="nifty-default-controls.xml" />
   <screen id="start" controller="mygame.StartScreen">
     <layer id="background" backgroundColor="#DCDCDC" childLayout = "center">
@@ -9,16 +9,17 @@
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
    
-    <panel id="panel_top" height="25%" width="75%" align="center" childLayout="center" backgroundColor="#D8BFD8">
-          <text text="Escape the Room!!!!!" font= "Interface/Fonts/Default.fnt" />
+    <panel id="panel_top" height="25%" width="75%" align="center" childLayout="center" backgroundColor="#9932CC">
+         <text text="Escape the Room!!!!!" font= "Interface/Fonts/Default.fnt" ></text>
       </panel>
        <panel id="panel_mid" height="50%" width="75%" align="center" childLayout="center" backgroundColor="#4682B4">
-        <text text="This is the Escape Room. The goal is to escape the room as fast as possible by solving puzzles.
-        1. Be respectful to the objects. 
-        2. Don't punch a hole in the wall.
-        3. Find the secret puzzles.
-        4. DON'T PRESS THE BIG RED BUTTON!!!!!! 
-        5. Enjoy yourself. 
+        <text text="This is the Escape Room. Your goal is to leave the room as fast as possible by solving puzzles that help you unlock the door. &#xA;
+        Rules:  &#xA;
+        1. Be respectful to the objects. &#xA;
+        2. Don't punch a hole in the wall. &#xA;
+        3. Find the secret puzzles.&#xA; 
+        4. DON'T PRESS THE BIG RED BUTTON!!!!!! &#xA;
+        5. Enjoy yourself. &#xA; 					
         "
         font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
       </panel>

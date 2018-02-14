@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="tool box">
+      <UniqueIdentifier>{98b228fd-b5ae-45fe-9a6e-ec6edcbacca4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="acframe_application.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acframe_appwindow.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acframe_main.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acgfx_camera.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acgfx_dynrender.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acgfx_font.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acgfx_graphics.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acutil_input.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acutil_log.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acutil_timer.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acutil_unicode.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+    <ClCompile Include="acwin_window.cpp">
+      <Filter>tool box</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="acframe_application.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acframe_appwindow.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acgfx_camera.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acgfx_dynrender.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acgfx_font.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acgfx_graphics.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acutil_input.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acutil_log.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acutil_timer.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acutil_unicode.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+    <ClInclude Include="acwin_window.h">
+      <Filter>tool box</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="todo.txt" />
+  </ItemGroup>
+</Project>

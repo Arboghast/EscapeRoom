@@ -1,0 +1,15 @@
+- Write acUtility::CTextCursor in acutil_unicode.cpp
+  - CTextCursor(const char *text, int encoding, int pos = 0)
+  - operator++(); - if nextPos = pos, call getChar to determine the length, then update the pos
+  - getChar();    - uses the appropriate decode function to determine the character
+  - pos           - the position is available for both reading and update
+  - ch            - the current character is protected, and determined when getChar is called
+  - nextPos       - the nextPosition is protected, and determined when getChar is called
+
+- It must be possible to use different colors
+
+- Write a string utility module with common string functions
+
+
+  
+    
