@@ -69,6 +69,6 @@ public class XML extends SimpleApplication
 	      screenControl = (EndScreen) nifty.getScreen("scoreboard").getScreenController();
 	      screenControl.addScore(1, 1);
 	      stateManager.attach((AppState) screenControl);
-	      guiViewPort.addProcessor(display);  
+	      guiViewPort.addProcessor(display);
 	}
 }

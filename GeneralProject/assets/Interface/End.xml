@@ -38,52 +38,14 @@
       <!-- ... -->
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-      <panel id="panel_bottom" height="100%" width="100%" align="center" childLayout="vertical" backgroundColor="#42f4bc">
-	    <panel id="1" height="5%" width="25%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="2" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="3" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="4" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
-          
-        </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
-          
-        </panel>
+      <panel id="panel_bottom" height="100%" width="100%" align="center" childLayout="vertical">
+		   <panel id="title" height="20%" width="100%" align="center" childLayout="vertical" >
+		   		<text text="HighScores" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
+		   		
+	       </panel>
+	       <panel id="scores" height="70%" width="75%" align="center" childLayout="vertical" backgroundColor="#3043e8">
+		   		
+	       </panel>
        </panel>
     </layer>
   </screen>
