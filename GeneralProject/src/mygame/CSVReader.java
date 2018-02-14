@@ -24,16 +24,15 @@ public class CSVReader
 		CSVReader tracker =  new CSVReader(CSV);
 		
 		//Run this line of code after you run the game, if you put it before running the game there will be no data to write into CSV
-		//tracker.writeToCSV("name as a string", number of minutes as int, number of seconds as int);
+		//tracker.writeToCSV(Parameter 1 is a String, Parameter 2 is an Int, Parameter 3 is an Int);
 		
 		//Testing the getRowData function, should return an arrayList of all strings with row information
 		ArrayList<String> data = (ArrayList<String>) tracker.getRowData();
 		
-		System.out.println(data.size());
-		//for(int i=0; i<data.size(); i++)
-		//{
-		//	System.out.println(data.get(i));
-		//}
+		for(int i=0; i<data.size(); i++)
+		{
+			System.out.println(data.get(i));
+		}
 	}
 	public CSVReader(File CSV)
 	{
@@ -99,19 +98,17 @@ public class CSVReader
 	}
 	public ArrayList<String> getRowData()
 	{
-		ArrayList<String> getRowData = new ArrayList<String>();
+		ArrayList<String> rowData = new ArrayList<String>();
 		
-		//System.out.println("Size: " + this.CSVData.size());
-		
-		for(int i=3; i<this.CSVData.size()-3; i=i+3)
+		for(int i=0; i<(this.CSVData.size()-3)/4; i++)
 		{
 			String name = getNameData().get(i);
-			int minutes = getMinutesData().get(i+1);
-			int seconds = getSecondsData().get(i+2);
+			int minutes = getMinutesData().get(i);
+			int seconds = getSecondsData().get(i);
 			
-			getRowData.add("Player " +name+ " has completed the game in " +minutes+ " minutes and " +seconds+" seconds.");
+			rowData.add("Player " +name+ " has completed the game in " +minutes+ " minutes and " +seconds+" seconds.");
 		}
-		return getRowData;
+		return rowData;
 	}
 	public List<String> getNameData()
 	{
