@@ -33,23 +33,22 @@
     
     </layer>
   </screen>
-  <screen id="scoreboard" controller="mygame.EndScreen">
+   <screen id="scoreboard" controller="mygame.EndScreen">
     <layer id="background" backgroundColor="#000f">
       <!-- ... -->
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-      <panel id="panel_bottom" height="100%" width="100%" align="center" childLayout="vertical"
-             backgroundColor="#00f8">
-	    <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
+      <panel id="panel_bottom" height="100%" width="100%" align="center" childLayout="vertical" backgroundColor="#42f4bc">
+	    <panel id="1" height="5%" width="25%" valign="center" childLayout="center"  backgroundColor="#44f8">
           
         </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
+        <panel id="2" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
           
         </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
+        <panel id="3" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">
           
         </panel>
-        <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
+        <panel id="4" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#88f8">
           
         </panel>
         <panel id="panel_bottom_left" height="5%" width="50%" valign="center" childLayout="center"  backgroundColor="#44f8">

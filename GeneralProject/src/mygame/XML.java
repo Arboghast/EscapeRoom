@@ -48,28 +48,27 @@ import com.jme3.input.controls.MouseButtonTrigger;
    -- Style the Start, hud, and endgame Screens--
    -- Clean up this messy file--
  */
-public class XML extends SimpleApplication{
-	
-  Nifty nifty;
-  EndScreen screenControl;
-
-  public static void main(String[] args) {
-    XML app = new XML();
-    app.start();
-  }
-  public void simpleInitApp() {
-    
-	  flyCam.setEnabled(false);
-	  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
-      nifty = display.getNifty();
-      nifty.addXml("Interface/End.xml");
-      nifty.gotoScreen("endgame");
-      screenControl = (EndScreen) nifty.getScreen("endgame").getScreenController();
-      screenControl.addScore(1, 1);
-      stateManager.attach((AppState) screenControl);
-      guiViewPort.addProcessor(display); 
+public class XML extends SimpleApplication
+{
+	Nifty nifty;
+	EndScreen screenControl;
+		
+	public static void main(String[] args) 
+	{
+	    XML app = new XML();
+	    app.start();
+	}
+	public void simpleInitApp()
+	{
 	    
-	
-	    
-  } 
+		  flyCam.setEnabled(false);
+		  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
+	      nifty = display.getNifty();
+	      nifty.addXml("Interface/End.xml");
+	      nifty.gotoScreen("scoreboard");
+	      screenControl = (EndScreen) nifty.getScreen("scoreboard").getScreenController();
+	      screenControl.addScore(1, 1);
+	      stateManager.attach((AppState) screenControl);
+	      guiViewPort.addProcessor(display);  
+	}
 }
