@@ -70,6 +70,7 @@ public class Main extends SimpleApplication
 	private int removed = 0;
 	private final static Trigger mouseClick = new MouseButtonTrigger(MouseInput.BUTTON_LEFT);
 	private final static String  MAPPING_COLOR = "Toggle color";
+	private boolean scoreboard = false;
   
   //Temporary vectors used on each frame.
   //They here to avoid instanciating new vectors on each frame
@@ -331,8 +332,26 @@ public class Main extends SimpleApplication
 			
 			
 			//Code To trigger Endgame Screen
+
 			if(removed == 4)
 			{
+				if(scoreboard)
+				{
+					nifty.gotoScreen("scoreboard");
+					StartScreen screenControl3 = (StartScreen) nifty.getScreen("scoreboard").getScreenController();
+					stateManager.attach((AppState) screenControl3);
+					
+					File CSV = new File("EscapeRoomScoreSheet.csv");
+					CSVReader tracker =  new CSVReader(CSV);
+					
+					ArrayList<String> data = tracker.getRowData();
+			    	for(int i = 0; i < data.size(); i++)
+			    	{
+			    		nifty.getCurrentScreen().findElementByName("help")
+						.getRenderer(TextRenderer.class)
+						.setText(data.get(i));
+			    	}
+				}
 				flyCam.setEnabled(false);
 				isRunning = false;
 				nifty.gotoScreen("endgame");
