@@ -33,7 +33,7 @@ public class TestNiftyGui extends SimpleApplication {
     nifty.loadControlFile("nifty-default-controls.xml");
 
     nifty.addScreen("start", new ScreenBuilder("start") {{
-        controller(new mygame.StartScreen());
+        controller(new mygame.ScreenManager());
         layer(new LayerBuilder("background") {{
             childLayoutCenter();
             backgroundColor("#000f");

@@ -1,5 +1,7 @@
 package mygame;
 
+import java.io.File;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -10,10 +12,11 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.controls.TextField;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
-public class StartScreen extends AbstractAppState implements ScreenController {
+public class ScreenManager extends AbstractAppState implements ScreenController {
 
 	private ViewPort viewPort;
   private Node rootNode;
@@ -25,9 +28,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
   Nifty nifty;
   private Screen screen;
   private Main app;
+  private int seconds;
+  private int minutes;
     
     
-    public StartScreen(){
+    public ScreenManager(){
        
       }
     @Override
@@ -47,6 +52,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
     	nifty.gotoScreen(nextScreen);
     }
+    public void addScore(int minutes, int seconds)
+    {
+    	this.seconds = seconds;
+    	this.minutes = minutes;
+    }
     public void startGame(String nextScreen) {
     	nifty.gotoScreen(nextScreen);
     	app.loadGame();
@@ -55,7 +65,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
       public void quitGame() {
         app.stop();
       }
-
+      public void submitScore()
+      {
+  String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
+      	
+      	File CSV = new File("EscapeRoomScoreSheet.csv");
+  		CSVReader tracker =  new CSVReader(CSV);
+      	tracker.writeToCSV(input,this.seconds,this.minutes);
+      	
+      	nifty.gotoScreen("scoreboard");
+      }
     
     
     public void bind(Nifty nifty, Screen screen) {

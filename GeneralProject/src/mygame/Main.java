@@ -1,6 +1,9 @@
 package mygame;
 
 
+import java.io.File;
+import java.util.ArrayList;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.asset.plugins.ZipLocator;
@@ -60,7 +63,7 @@ public class Main extends SimpleApplication
   private Vector3f walkDirection = new Vector3f();
   private boolean left = false, right = false, up = false, down = false;
   Nifty nifty;
-  StartScreen screenControl;
+  ScreenManager screenControl;
   public boolean isRunning = false;
   
   private Geometry geom;
@@ -95,7 +98,7 @@ public class Main extends SimpleApplication
 	    stateManager.attach(bulletAppState);
 	    //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 	    
-	    StartScreen screenControl3 = (StartScreen) nifty.getScreen("hud").getScreenController();
+	    ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("hud").getScreenController();
 	    stateManager.attach((AppState) screenControl3);
 
 	    // We re-use the flyby camera for rotation, while positioning is handled by physics
@@ -177,7 +180,7 @@ public class Main extends SimpleApplication
       nifty = display.getNifty();
       nifty.addXml("Interface/Start.xml");
       nifty.gotoScreen("start");
-      screenControl = (StartScreen) nifty.getScreen("start").getScreenController();
+      screenControl = (ScreenManager) nifty.getScreen("start").getScreenController();
       stateManager.attach((AppState) screenControl);
       guiViewPort.addProcessor(display); 
 	    
@@ -235,6 +238,7 @@ public class Main extends SimpleApplication
 	        		if(hit.equals("geom0")||hit.equals("geom1")||hit.equals("geom2")||hit.equals("geom3"))
 	        		{
 	        			rootNode.detachChild(results.getCollision(0).getGeometry());
+	        			removed++;
 	        			
 	        		}
 	        	
@@ -332,33 +336,35 @@ public class Main extends SimpleApplication
 			
 			
 			//Code To trigger Endgame Screen
-
+			System.out.println(removed);
 			if(removed == 4)
 			{
-				if(scoreboard)
-				{
-					nifty.gotoScreen("scoreboard");
-					StartScreen screenControl3 = (StartScreen) nifty.getScreen("scoreboard").getScreenController();
-					stateManager.attach((AppState) screenControl3);
-					
-					File CSV = new File("EscapeRoomScoreSheet.csv");
-					CSVReader tracker =  new CSVReader(CSV);
-					
-					ArrayList<String> data = tracker.getRowData();
-			    	for(int i = 0; i < data.size(); i++)
-			    	{
-			    		nifty.getCurrentScreen().findElementByName("help")
-						.getRenderer(TextRenderer.class)
-						.setText(data.get(i));
-			    	}
-				}
+				guiNode.detachAllChildren();
 				flyCam.setEnabled(false);
 				isRunning = false;
 				nifty.gotoScreen("endgame");
-				StartScreen screenControl3 = (StartScreen) nifty.getScreen("endgame").getScreenController();
+				ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("endgame").getScreenController();
 				//screenControl.addScore(1, 1); Use this to pass in game time to csv
 				stateManager.attach((AppState) screenControl3);
 			}
+		}
+        if(scoreboard)
+		{
+        	scoreboard = false;
+			nifty.gotoScreen("scoreboard");
+			ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();
+			stateManager.attach((AppState) screenControl3);
+			
+			File CSV = new File("EscapeRoomScoreSheet.csv");
+			CSVReader tracker =  new CSVReader(CSV);
+			
+			ArrayList<String> data = tracker.getRowData();
+	    	for(int i = 0; i < data.size(); i++)
+	    	{
+	    		nifty.getCurrentScreen().findElementByName("help")
+				.getRenderer(TextRenderer.class)
+				.setText(data.get(i));
+	    	}
 		}
     }
 }
