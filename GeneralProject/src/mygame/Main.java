@@ -28,6 +28,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import com.jme3.scene.shape.Sphere;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -43,12 +44,17 @@ public class Main extends SimpleApplication implements ActionListener {
 	Nifty nifty;
 	ScreenManager screenControl;
 	public boolean isRunning = false;
-
+	private boolean done = false;
 	private Geometry geom;
 	private Geometry geom1;
 	private Geometry geom2;
 	private Geometry geom3;
+	private Geometry geom4;
+	private Geometry geom5;
+	private Geometry geom6;
 	private int removed = 0;
+	boolean thekey = false;
+	boolean winner = false;
 	private final static Trigger mouseClick = new MouseButtonTrigger(MouseInput.BUTTON_LEFT);
 	private final static String MAPPING_COLOR = "Toggle color";
 	private boolean scoreboard = false;
@@ -122,13 +128,17 @@ public class Main extends SimpleApplication implements ActionListener {
 		chest.setLocalScale(1f);
 		
 		
-		rootNode.attachChild(key);
+		/*
 		rootNode.attachChild(chest);
 		rootNode.attachChild(crowbar);
+		rootNode.attachChild(key);
+		key.setLocalTranslation(new Vector3f(15, 3, -80));
 		chest.setLocalTranslation(new Vector3f(15, 1, 45));
-		crowbar.setLocalTranslation(new Vector3f(30, 4, 20));
+		crowbar.setLocalTranslation(new Vector3f(30, 4, 20));*/
+		
 
 		Box mesh = new Box(1, 1, 1);
+		Sphere mexh2 = new Sphere(32, 32, 2f);
 		geom = new Geometry("geom0", mesh);
 		Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
 		mat.setColor("Color", ColorRGBA.Blue);
@@ -150,6 +160,17 @@ public class Main extends SimpleApplication implements ActionListener {
 		geom3.setMaterial(mat);
 		rootNode.attachChild(geom3);
 		geom3.setLocalTranslation(new Vector3f(15, 1, -15));
+		
+		geom4 = new Geometry("geom4", mesh);
+		geom4.setMaterial(mat);
+		
+		
+		geom5 = new Geometry("geom5", mesh);
+		geom5.setMaterial(mat);
+		
+		
+		geom6 = new Geometry("geom6", mexh2);
+		geom6.setMaterial(mat);
 		// to make them appear in the game world.
 		rootNode.attachChild(sceneModel);
 		bulletAppState.getPhysicsSpace().add(landscape);
@@ -226,6 +247,32 @@ public class Main extends SimpleApplication implements ActionListener {
 					rootNode.detachChild(results.getCollision(0).getGeometry());
 					removed++;
 
+				}
+				if(removed == 4)
+				{
+					rootNode.attachChild(geom4);
+					geom4.setLocalTranslation(new Vector3f(15, 3, -80));
+				}
+				if(hit.equals("geom4"))
+				{
+					rootNode.detachChild(geom4);
+					thekey = true;
+				}
+				if(thekey)
+				{
+					rootNode.attachChild(geom5);
+					geom5.setLocalTranslation(new Vector3f(15, 3, 45));
+				}
+				if(hit.equals("geom5"))
+				{
+					rootNode.detachChild(geom5);
+					rootNode.attachChild(geom6);
+					geom6.setLocalTranslation(new Vector3f(15, 1, 45));
+				}
+				if(hit.equals("geom6"))
+				{
+					rootNode.detachChild(geom6);
+					winner = true;
 				}
 
 			}
@@ -318,7 +365,7 @@ public class Main extends SimpleApplication implements ActionListener {
 
 			// Code To trigger Endgame Screen
 			System.out.println(removed);
-			if (removed == 4) {
+			if (winner) {
 				guiNode.detachAllChildren();
 				flyCam.setEnabled(false);
 				isRunning = false;
