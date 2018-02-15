@@ -7,30 +7,31 @@
   <screen id="start" controller="mygame.ScreenManager">
     <layer id="background" backgroundColor="#DCDCDC" childLayout = "center">
     	<image filename = "Interface/Room.jpg"></image>
-     	<!-- ... -->
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
     	<panel id="panel_top" height="25%" width="75%" align="center" childLayout="center" backgroundColor="#9932CC">
         	<text text="Escape the Room!!!!!" font= "Interface/Fonts/Default.fnt" ></text>
       	</panel>
        	<panel id="panel_mid" height="50%" width="75%" align="center" childLayout="center" backgroundColor="#4682B4">
-        	<text text="This is the Escape Room. Your goal is to leave the room as fast as possible by solving puzzles that help you unlock the door. &#xA;
-        		Rules:  &#xA;
+        	<text text="This is the Escape Room. Your goal is to leave the room as fast as possible by solving puzzles that help you unlock the door. &#xA; &#xA;
+        		Rules:  &#xA; 
         		1. Be respectful to the objects. &#xA;
-        		2. Don't punch a hole in the wall. &#xA;
-        		3. Find the secret puzzles.&#xA; 
+        		2. Don't punch a hole in the wall. &#xA; 
+        		3. Find the secret puzzles.&#xA;  
         		4. DON'T PRESS THE BIG RED BUTTON!!!!!! &#xA;
-        		5. Enjoy yourself. &#xA;"
+        		5. Enjoy yourself. "
         		font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
       	</panel>
-      	<panel id="panel_bottom" height="25%" width="75%" align="center" childLayout="horizontal" backgroundColor="#B0C4DE" padding="25%">
+      	<panel id="panel_bottom" height="12.5%" width="75%" align="center" childLayout="center" backgroundColor="#B0C4DE" >
         	<control name="button" label="" id="ghost" align="center" valign="center" visibleToMouse="false" width = "0%" height = "0%" >
           	</control>
           	<control name="button" label="Start" id="StartButton" align="center" valign="center" visibleToMouse="true" backgroundColor="#66CDAA" >
           		<interact onClick="startGame(hud)" />
           	</control> 
-          	<control name="button" label="Quit" id="QuitButton" align="center" valign="center" visibleToMouse="true" backgroundColor="#F08080">
-            	<interact onClick="quitGame()"/>
+        </panel>
+        <panel id="panel_bottom" height="12.5%" width="75%" align="center" childLayout="vertical" backgroundColor="#B0C4DE" >
+        	<control name="button" label="Quit" id="QuitButton" align="center" valign="center" visibleToMouse="true" backgroundColor="#F08080">
+            <interact onClick="quitGame()"/>
           	</control>
         </panel>
     </layer>
@@ -38,15 +39,13 @@
   
 
   <screen id="hud" controller="mygame.ScreenManager">
-  	<layer id="foreground" backgroundColor="#0000" childLayout="horizontal">
-    	<panel id="panel_left" width="80%" height="100%" childLayout="vertical">
+  	<layer id="foreground" backgroundColor="#0000" childLayout="horizontal">	
+  		<panel id="panel_left" width="80%" height="10%" childLayout="vertical">
         <!-- spacer -->
      	</panel>
      	<panel id="panel_right" width="20%" height="100%" childLayout="vertical" >
         <panel id="panel_top_right1" width="100%" height="15%" childLayout="center"  backgroundColor="#00f8">
              <text id="time" text="Time Spent: 0:00" font="Interface/Fonts/Default.fnt" width="100%" height="10%" /> 
-        </panel>
-        <panel id="panel_top_right2" width="100%" height="15%" childLayout="center" backgroundColor="#44f8">
         </panel>
         <panel id="panel_bot_right" width="100%" height="70%" valign="center">
         </panel>
@@ -56,39 +55,36 @@
 
 
   <screen id="endgame" controller="mygame.ScreenManager">
-  	<layer id="background" backgroundColor="#000f">
-    	<!-- ... -->
+  	<layer id="background" childLayout = "center" backgroundColor="#DCDCDC">
+    	<image filename = "Interface/Room.jpg"></image>
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-    	<!-- top panel-->
-    	<panel id="panel_top" height="25%" width="75%" align="center" childLayout="center" backgroundColor="#b6e3f7">
-    		<text text="Thanks For Playing!" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-    	</panel>
+    	<panel id = "fake_panel" height = "25%" width = "75%" align = "center" childLayout = "center"></panel>
     	
-    	<!-- Mid panel -->
-    	<panel id="panel_mid" height="45%" width="75%" align="center" childLayout="center" backgroundColor="#0f08">
-     		<text text="Please enter your name so it can be added to the score board."
-     			font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
+    	<!-- top panel-->
+    	<panel id="panel_top" height="30%" width="75%" align="center" childLayout="center" backgroundColor="#B0C4DE">
+    		<text text="Thanks For Playing! &#xA; &#xA; Please enter your name so it can be added to the score board." 
+    		font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true"/>
     	</panel>
-      
     <!-- Textbox panel -->
-    <panel id="panel_mid_bot" height="10%" width="75%" align="center" childLayout="center" backgroundColor="#0f08">
-       <control id="input" name="textfield" backgroundColor="#b6e3f7"></control>
+    <panel id="panel_mid_bot" height="10%" width="75%" align="center" childLayout="center" backgroundColor="#B0C4DE">
+       <control id="input" name="textfield" backgroundColor="#000000"></control>
     </panel>
     
     <!-- Submit panel -->
-    <panel id="panel_mid_bot" height="30%" width="75%" align="center" childLayout="center" backgroundColor="#0f08">
-       <control name="button" label="Submit" id="SubmitButton" align="center" valign="center" visibleToMouse="true">
+    <panel id="panel_mid_bot" height="20%" width="75%" align="center" childLayout="center" backgroundColor="#B0C4DE">
+       <control name="button" label="Submit" id="SubmitButton" align="center" valign="center" visibleToMouse="true" backgroundColor = "#696969">
           	<interact onClick="submitScore()"/>
        </control>
     </panel>
+    <panel id = "panel_bottom" height = "25%" width = "75%" align = "center" childLayout = "center" ></panel>
     </layer>
   </screen>
   
   
    <screen id="scoreboard" controller="mygame.ScreenManager">
-    <layer id="background" backgroundColor="#000f">
-      <!-- ... -->
+    <layer id="background" childLayout = "center" backgroundColor="#DCDCDC">
+      <image filename = "Interface/Room.jpg"></image>
     </layer>
     <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
       <panel id="panel_bottom" height="100%" width="100%" align="center" childLayout="vertical">
