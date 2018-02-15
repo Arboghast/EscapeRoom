@@ -60,6 +60,7 @@ public class Main extends SimpleApplication implements ActionListener {
 	private long timer = 0;
 	private int duration = -1; // 1 second delay for game to load
 	private Spatial crowbar;
+	private Spatial chest;
 
 	public static void main(String[] args) {
 		Main app = new Main();
@@ -110,9 +111,23 @@ public class Main extends SimpleApplication implements ActionListener {
 		// We attach the scene and the player to the rootnode and the physics space,
 		// to make them appear in the game world.
 		
-		/*crowbar = assetManager.loadModel("Models/roomcoloured.j3o");
+		crowbar = assetManager.loadModel("Models/crowbar.j3o");
 		sceneModel.setLocalScale(6f);
-		rootNode.attachChild(crowbar);*/
+		
+		CollisionShape crowbarcollision = CollisionShapeFactory.createMeshShape((Node) sceneModel);
+		landscape = new RigidBodyControl(crowbarcollision, 0);
+		crowbar.addControl(landscape);
+		
+		chest = assetManager.loadModel("Models/bau.j3o");
+		sceneModel.setLocalScale(6f);
+		
+		CollisionShape chestcollision = CollisionShapeFactory.createMeshShape((Node) sceneModel);
+		landscape = new RigidBodyControl(chestcollision, 0);
+		chest.addControl(landscape);
+		
+		
+		rootNode.attachChild(chest);
+		rootNode.attachChild(crowbar);
 
 		Box mesh = new Box(1, 1, 1);
 		geom = new Geometry("geom0", mesh);
