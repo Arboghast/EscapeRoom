@@ -418,8 +418,7 @@ public class Main extends SimpleApplication implements ActionListener {
 			ArrayList<String> data = tracker.getRowData();
 			for (int i = 0; i < data.size(); i++)
 			{
-				System.out.println(data.get(i));
-				highscores = (data.get(i) + "\n");
+				highscores = highscores + (data.get(i) + "\n");
 			}
 			nifty.getCurrentScreen().findElementById("scoresText").getRenderer(TextRenderer.class).setText(highscores);
 		}
