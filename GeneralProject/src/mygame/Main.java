@@ -115,7 +115,7 @@ public class Main extends SimpleApplication implements ActionListener {
 		// We also put the player in its starting position.
 		CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
 		player = new CharacterControl(capsuleShape, 0.05f);
-		player.setJumpSpeed(10);
+		player.setJumpSpeed(25);
 		player.setFallSpeed(30);
 
 		player.setPhysicsLocation(new Vector3f(0, 4, 0));
