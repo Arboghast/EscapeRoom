@@ -122,6 +122,8 @@ public class Main extends SimpleApplication implements ActionListener {
 		
 		rootNode.attachChild(chest);
 		rootNode.attachChild(crowbar);
+		chest.setLocalTranslation(new Vector3f(15, 1, 45));
+		crowbar.setLocalTranslation(new Vector3f(30, 4, 20));
 
 		Box mesh = new Box(1, 1, 1);
 		geom = new Geometry("geom0", mesh);
