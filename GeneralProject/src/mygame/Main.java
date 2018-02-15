@@ -55,7 +55,7 @@ import com.jme3.input.controls.MouseButtonTrigger;
  */
 public class Main extends SimpleApplication
         implements ActionListener {
-
+// Creates constants that are used to create the room and the player
   private Spatial sceneModel;
   private BulletAppState bulletAppState;
   private RigidBodyControl landscape;
@@ -169,6 +169,7 @@ public class Main extends SimpleApplication
 	    System.out.println("loadGame");
 	    isRunning = true;
   }
+  // Brings up the start screen and loads in the game files using a seperated class
   public void simpleInitApp() {
     /** Set up Physics */
 	  
@@ -189,7 +190,7 @@ public class Main extends SimpleApplication
   }
       
    
-  
+  // Creates crosshairs in the center of the screen
   protected void initCrossHairs() {
       guiNode.detachAllChildren();
       guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
@@ -220,7 +221,9 @@ public class Main extends SimpleApplication
 	inputManager.addListener(actionsListener, new String[]{MAPPING_COLOR});
   }
 
-  
+  /* Action listener which listens to mouseclicks and where the player is 
+  clicking and performs different tasks depending on where the 
+  player clicked in the game*/
   private ActionListener actionsListener = new ActionListener() {
 	   	 public void onAction(String name, boolean isPressed, float tpf) {
 	   		CollisionResults results = new CollisionResults();
@@ -242,37 +245,15 @@ public class Main extends SimpleApplication
 	        			
 	        		}
 	        	
-	        	}
-	        	/*
-	        	if(!isPressed)
-	        	{	
-		        	if(removed == 0)
-		        	{
-		        		rootNode.detachChild(geom);// removes the object 
-		        		removed += 1;
-		        	}
-		        	else if(removed == 1)
-		        	{
-		        		rootNode.detachChild(geom1); // removes the object
-		        		removed += 1;
-		        	}
-		        	else if(removed == 2)
-		        	{
-		        		rootNode.detachChild(geom2); // removes the object 
-		        		removed += 1;
-		        	}
-		        	else if(removed == 3)
-		        	{
-		        		rootNode.detachChild(geom3); // removes the object
-		        		removed = 4;
-		        	}
-	        	} 
-	        	*/	
+	        	}	
 	   	 	}
 	   };   
 	   
   /** These are our custom actions triggered by key presses.
    * We do not walk yet, we just keep track of the direction the user pressed. */
+	   /* Binds the WSAD and Space keys to allow the player to move 
+	    * forward,backwards,left,right, and jump
+	    */
   public void onAction(String binding, boolean value, float tpf) {
     if (binding.equals("Left")) {
       if (value) { left = true; } else { left = false; }
@@ -350,6 +331,7 @@ public class Main extends SimpleApplication
 		}
         if(scoreboard)
 		{
+        	//Sends the player to the scoreboard which carries data from a CSV file
         	scoreboard = false;
 			nifty.gotoScreen("scoreboard");
 			ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();
