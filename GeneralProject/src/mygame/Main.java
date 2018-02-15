@@ -59,6 +59,7 @@ public class Main extends SimpleApplication implements ActionListener {
 	private Vector3f camLeft = new Vector3f();
 	private long timer = 0;
 	private int duration = -1; // 1 second delay for game to load
+	private Spatial crowbar;
 
 	public static void main(String[] args) {
 		Main app = new Main();
@@ -108,6 +109,10 @@ public class Main extends SimpleApplication implements ActionListener {
 
 		// We attach the scene and the player to the rootnode and the physics space,
 		// to make them appear in the game world.
+		
+		crowbar = assetManager.loadModel("Models/roomcoloured.j3o");
+		sceneModel.setLocalScale(6f);
+		rootNode.attachChild(crowbar);
 
 		Box mesh = new Box(1, 1, 1);
 		geom = new Geometry("geom0", mesh);
