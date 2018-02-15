@@ -112,16 +112,16 @@ public class Main extends SimpleApplication implements ActionListener {
 		// to make them appear in the game world.
 		
 		crowbar = assetManager.loadModel("Models/crowbar.j3o");
-		sceneModel.setLocalScale(6f);
+		crowbar.setLocalScale(6f);
 		
-		CollisionShape crowbarcollision = CollisionShapeFactory.createMeshShape((Node) sceneModel);
+		CollisionShape crowbarcollision = CollisionShapeFactory.createMeshShape((Node) crowbar);
 		landscape = new RigidBodyControl(crowbarcollision, 0);
 		crowbar.addControl(landscape);
 		
 		chest = assetManager.loadModel("Models/bau.j3o");
-		sceneModel.setLocalScale(6f);
+		chest.setLocalScale(6f);
 		
-		CollisionShape chestcollision = CollisionShapeFactory.createMeshShape((Node) sceneModel);
+		CollisionShape chestcollision = CollisionShapeFactory.createMeshShape((Node) chest);
 		landscape = new RigidBodyControl(chestcollision, 0);
 		chest.addControl(landscape);
 		
