@@ -52,6 +52,9 @@ public class Main extends SimpleApplication implements ActionListener {
 	private Geometry geom4;
 	private Geometry geom5;
 	private Geometry geom6;
+	private Geometry geom7;
+	private Geometry geom8;
+	private Geometry geom9;
 	private int removed = 0;
 	boolean thekey = false;
 	boolean winner = false;
@@ -172,6 +175,15 @@ public class Main extends SimpleApplication implements ActionListener {
 		
 		geom6 = new Geometry("geom6", mexh2);
 		geom6.setMaterial(mat);
+		
+		geom7 = new Geometry("geom7", mesh);
+		geom7.setMaterial(mat);
+		
+		geom8 = new Geometry("geom8", mesh);
+		geom8.setMaterial(mat);
+		
+		geom9 = new Geometry("geom9", mesh);
+		geom9.setMaterial(mat);
 		// to make them appear in the game world.
 		rootNode.attachChild(sceneModel);
 		bulletAppState.getPhysicsSpace().add(landscape);
@@ -253,29 +265,43 @@ public class Main extends SimpleApplication implements ActionListener {
 				{
 					rootNode.attachChild(geom4);
 					geom4.setLocalTranslation(new Vector3f(15, 3, -80));
+					removed = 0;
 				}
 				if(hit.equals("geom4"))
 				{
 					rootNode.detachChild(geom4);
 					thekey = true;
+					
 				}
 				if(thekey)
 				{
 					rootNode.attachChild(geom5);
 					geom5.setLocalTranslation(new Vector3f(15, 3, 45));
+					thekey = false;
 				}
 				if(hit.equals("geom5"))
 				{
 					rootNode.detachChild(geom5);
+					rootNode.attachChild(geom7);
+					geom7.setLocalTranslation(new Vector3f(15, 15, 45));
+				}
+				if(hit.equals("geom7"))
+				{
+					rootNode.detachChild(geom7);
+					rootNode.attachChild(geom8);
+					geom8.setLocalTranslation(new Vector3f(45, 15, 45));
+				}
+				if(hit.equals("geom8"))
+				{
+					rootNode.detachChild(geom8);
 					rootNode.attachChild(geom6);
-					geom6.setLocalTranslation(new Vector3f(15, 1, 45));
+					geom6.setLocalTranslation(new Vector3f(15, 15, -45));
 				}
 				if(hit.equals("geom6"))
 				{
 					rootNode.detachChild(geom6);
 					winner = true;
 				}
-
 			}
 		}
 	};
@@ -365,7 +391,6 @@ public class Main extends SimpleApplication implements ActionListener {
 					.setText("Time Spent: " + formattedH + ":" + formattedM);
 
 			// Code To trigger Endgame Screen
-			System.out.println(removed);
 			if (winner) {
 				guiNode.detachAllChildren();
 				flyCam.setEnabled(false);
