@@ -383,10 +383,10 @@ public class Main extends SimpleApplication implements ActionListener {
 			}
 
 			// update HUD Display
-			int minutes = duration / 60;
+			minutes = duration / 60;
 			String formattedH = String.format("%02d", minutes);
 
-			int seconds = duration - (60 * minutes);
+			seconds = duration - (60 * minutes);
 			String formattedM = String.format("%02d", seconds);
 
 			nifty.getCurrentScreen().findElementByName("time").getRenderer(TextRenderer.class)
