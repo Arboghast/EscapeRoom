@@ -16,6 +16,8 @@ import mygame.ScreenManager;
  * @author iamcreasy
 */
 public class TestNiftyGui extends SimpleApplication {
+	
+	//https://github.com/kimlercorey/ninjahunter/blob/master/src/cmsc325/finalProject/NinjaHunter.java
 
     public static void main(String[] args) {
         TestNiftyGui app = new TestNiftyGui();
