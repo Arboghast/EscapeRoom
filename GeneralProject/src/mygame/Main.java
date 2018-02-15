@@ -61,6 +61,7 @@ public class Main extends SimpleApplication implements ActionListener {
 	private int duration = -1; // 1 second delay for game to load
 	private Spatial crowbar;
 	private Spatial chest;
+	private Spatial key;
 
 	public static void main(String[] args) {
 		Main app = new Main();
@@ -114,12 +115,14 @@ public class Main extends SimpleApplication implements ActionListener {
 		crowbar = assetManager.loadModel("Models/crowbar.j3o");
 		crowbar.setLocalScale(6f);
 		
-		
+		key = assetManager.loadModel("Models/Worn_Key.j3o");
+		key.setLocalScale(6f);
 		
 		chest = assetManager.loadModel("Models/bau.j3o");
 		chest.setLocalScale(1f);
 		
 		
+		rootNode.attachChild(key);
 		rootNode.attachChild(chest);
 		rootNode.attachChild(crowbar);
 		chest.setLocalTranslation(new Vector3f(15, 1, 45));
