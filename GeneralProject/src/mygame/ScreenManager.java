@@ -40,12 +40,12 @@ public class ScreenManager extends AbstractAppState implements ScreenController 
 		this.minutes = minutes;
 	}
 
-	public void startGame(String nextScreen) {  
+	public void startGame(String nextScreen) {  //loads the starting screen and loads game
 		nifty.gotoScreen(nextScreen);
 		app.loadGame();
 	}
 
-	public void quitGame() { 
+	public void quitGame() { 	//Ends the game when function is called
 		app.stop();
 	}
 

@@ -1,6 +1,5 @@
 package mygame;
 
-
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.asset.plugins.ZipLocator;
@@ -55,20 +54,19 @@ public class XML extends SimpleApplication
 		
 	public static void main(String[] args) 
 	{
-	    XML app = new XML();
-	    app.start();
+	    XML app = new XML();	//creates an xml file?
+	    app.start();	//xml file would be loaded?
 	}
 	public void simpleInitApp()
 	{
-	    
 		  flyCam.setEnabled(false);
 		  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
 	      nifty = display.getNifty();
 	      nifty.addXml("Interface/Start.xml");
 	      nifty.gotoScreen("scoreboard");
-	      screenControl = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();
+	      screenControl = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();	//holds all the screens in screen controller and swaps screens
 	      screenControl.addScore(1, 1);
-	      stateManager.attach((AppState) screenControl);
+	      stateManager.attach((AppState) screenControl); //?
 	      guiViewPort.addProcessor(display);
 	}
 }

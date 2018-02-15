@@ -35,10 +35,11 @@ public class CSVReader {
 	}
 
 	public CSVReader(File CSV) {
-		Path pathToFile = Paths.get(CSV.getAbsolutePath());
+		Path pathToFile = Paths.get(CSV.getAbsolutePath()); //creates path
 		this.CSVData = new ArrayList<String>();
 		this.numColumns = 0;
 
+		//reads the array list and separates each line with a comma
 		try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
 			String line = br.readLine();
 			String[] attributes2 = line.split(",");
@@ -62,9 +63,12 @@ public class CSVReader {
 	public void writeToCSV(String name, int minutes, int seconds) {
 		PrintWriter pw = null;
 
-		try {
+		try 
+		{
 			pw = new PrintWriter(new File("EscapeRoomScoreSheet.csv"));
-		} catch (FileNotFoundException e) {
+		} 
+		catch (FileNotFoundException e) 
+		{
 			System.err.println(e);
 		}
 		StringBuilder sb = new StringBuilder();
@@ -78,7 +82,7 @@ public class CSVReader {
 		this.CSVData.add(name);
 		this.CSVData.add(Integer.toString(minutes));
 		this.CSVData.add(Integer.toString(seconds));
-		sb.append(name + "," + Integer.toString(minutes) + "," + Integer.toString(seconds) + "\n");
+		sb.append(name + "," + Integer.toString(minutes) + "," + Integer.toString(seconds) + "\n");  //adds all information into CSV file
 		pw.write(sb.toString());
 		pw.close();
 	}
