@@ -64,7 +64,7 @@ public class XML extends SimpleApplication
 		  flyCam.setEnabled(false);
 		  NiftyJmeDisplay display = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort); //create jme-nifty-processor
 	      nifty = display.getNifty();
-	      nifty.addXml("Interface/End.xml");
+	      nifty.addXml("Interface/Start.xml");
 	      nifty.gotoScreen("scoreboard");
 	      screenControl = (ScreenManager) nifty.getScreen("scoreboard").getScreenController();
 	      screenControl.addScore(1, 1);
