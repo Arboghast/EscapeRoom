@@ -136,6 +136,7 @@ public class Main extends SimpleApplication implements ActionListener {
 		chest.setLocalTranslation(new Vector3f(15, 1, 45));
 		crowbar.setLocalTranslation(new Vector3f(30, 4, 20));*/
 		
+		
 
 		Box mesh = new Box(1, 1, 1);
 		Sphere mexh2 = new Sphere(32, 32, 2f);
