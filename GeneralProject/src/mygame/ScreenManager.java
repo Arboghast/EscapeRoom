@@ -16,8 +16,8 @@ public class ScreenManager extends AbstractAppState implements ScreenController 
 	Nifty nifty;
 	private Screen screen;
 	private Main app;
-	private int seconds;
-	private int minutes;
+	private static int seconds;
+	private static int minutes;
 
 	@Override
 	public void initialize(AppStateManager stateManager, Application app) {
