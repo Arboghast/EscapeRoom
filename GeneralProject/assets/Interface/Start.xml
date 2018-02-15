@@ -26,7 +26,7 @@
         	<control name="button" label="" id="ghost" align="center" valign="center" visibleToMouse="false" width = "0%" height = "0%" >
           	</control>
           	<control name="button" label="Start" id="StartButton" align="center" valign="center" visibleToMouse="true" backgroundColor="#66CDAA" >
-          		<interact onClick="startGame(hud)" />
+          		<interact onClick="startGame(hud)"/>
           	</control> 
         </panel>
         <panel id="panel_bottom" height="12.5%" width="75%" align="center" childLayout="vertical" backgroundColor="#B0C4DE" >
