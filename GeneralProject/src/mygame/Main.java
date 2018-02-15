@@ -114,16 +114,10 @@ public class Main extends SimpleApplication implements ActionListener {
 		crowbar = assetManager.loadModel("Models/crowbar.j3o");
 		crowbar.setLocalScale(6f);
 		
-		CollisionShape crowbarcollision = CollisionShapeFactory.createMeshShape((Node) crowbar);
-		landscape = new RigidBodyControl(crowbarcollision, 0);
-		crowbar.addControl(landscape);
+		
 		
 		chest = assetManager.loadModel("Models/bau.j3o");
-		chest.setLocalScale(6f);
-		
-		CollisionShape chestcollision = CollisionShapeFactory.createMeshShape((Node) chest);
-		landscape = new RigidBodyControl(chestcollision, 0);
-		chest.addControl(landscape);
+		chest.setLocalScale(1f);
 		
 		
 		rootNode.attachChild(chest);
