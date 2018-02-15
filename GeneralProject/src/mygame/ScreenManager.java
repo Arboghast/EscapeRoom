@@ -3,13 +3,8 @@ package mygame;
 import java.io.File;
 
 import com.jme3.app.Application;
-import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.asset.AssetManager;
-import com.jme3.math.ColorRGBA;
-import com.jme3.renderer.ViewPort;
-import com.jme3.scene.Node;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.TextField;
@@ -18,75 +13,67 @@ import de.lessvoid.nifty.screen.ScreenController;
 
 public class ScreenManager extends AbstractAppState implements ScreenController {
 
-	private ViewPort viewPort;
-  private Node rootNode;
-  private Node guiNode;
-  private AssetManager assetManager;
-  private Node localRootNode = new Node("Start Screen RootNode");
-  private Node localGuiNode = new Node("Start Screen GuiNode");
-  private final ColorRGBA backgroundColor = ColorRGBA.Gray;
-  Nifty nifty;
-  private Screen screen;
-  private Main app;
-  private int seconds;
-  private int minutes;
-    
-    
-    public ScreenManager(){
-       
-      }
-    @Override
-    public void initialize(AppStateManager stateManager, Application app) {
-    	 super.initialize(stateManager, app);
-         this.app = (Main) app;
-        //TODO: initialize your AppState, e.g. attach spatials to rootNode
-        //this is called on the OpenGL thread after the AppState has been attached
-    }
+	Nifty nifty;
+	private Screen screen;
+	private Main app;
+	private int seconds;
+	private int minutes;
 
-    @Override
-    public void update(float tpf) {
-        //TODO: implement behavior during runtime
-    }
+	@Override
+	public void initialize(AppStateManager stateManager, Application app) {
+		super.initialize(stateManager, app);
+		this.app = (Main) app;
+		// this is called on the OpenGL thread after the AppState has been attached
+	}
 
-    public void gotoScreen(String nextScreen)
-    {
-    	nifty.gotoScreen(nextScreen);
-    }
-    public void addScore(int minutes, int seconds)
-    {
-    	this.seconds = seconds;
-    	this.minutes = minutes;
-    }
-    public void startGame(String nextScreen) {
-    	nifty.gotoScreen(nextScreen);
-    	app.loadGame();
-      }
+	@Override
+	public void update(float tpf) {
+		// TODO: implement behavior during runtime
+	}
 
-      public void quitGame() {
-        app.stop();
-      }
-      public void submitScore()
-      {
-  String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
-      	
-      	File CSV = new File("EscapeRoomScoreSheet.csv");
-  		CSVReader tracker =  new CSVReader(CSV);
-      	tracker.writeToCSV(input,this.seconds,this.minutes);
-      	
-      	nifty.gotoScreen("scoreboard");
-      }
-    
-    
-    public void bind(Nifty nifty, Screen screen) {
-    	this.nifty = nifty;
-        this.screen = screen;
-    }
+	public void gotoScreen(String nextScreen) {   //Switches screens
+		nifty.gotoScreen(nextScreen);
+	}
 
-    public void onStartScreen() {
-       
-    }
+	public void addScore(int minutes, int seconds) {  //Sends minutes and seconds from java to gui
+		this.seconds = seconds;
+		this.minutes = minutes;
+	}
 
-    public void onEndScreen() {
-       
-    }
+	public void startGame(String nextScreen) {  
+		nifty.gotoScreen(nextScreen);
+		app.loadGame();
+	}
+
+	public void quitGame() { 
+		app.stop();
+	}
+
+	public void submitScore() {    
+		String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
+
+		File CSV = new File("EscapeRoomScoreSheet.csv");      //Receives User input and adds it along with minutes and seconds to the CSV file
+		CSVReader tracker = new CSVReader(CSV);
+		tracker.writeToCSV(input, this.seconds, this.minutes);
+
+		nifty.gotoScreen("scoreboard");
+	}
+
+	public void bind(Nifty nifty, Screen screen) {
+		this.nifty = nifty;
+		this.screen = screen;
+	}
+
+	@Override
+	public void onEndScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStartScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
