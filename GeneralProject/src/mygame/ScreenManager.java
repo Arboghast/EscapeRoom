@@ -56,6 +56,7 @@ public class ScreenManager extends AbstractAppState implements ScreenController 
 		CSVReader tracker = new CSVReader(CSV);
 		tracker.writeToCSV(input, this.seconds, this.minutes);
 
+		app.scoreboard = true;
 		nifty.gotoScreen("scoreboard");
 	}
 

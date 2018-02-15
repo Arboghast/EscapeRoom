@@ -92,7 +92,7 @@
 		   		<text text="HighScores" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
 	       </panel>
 	       <panel id="scores" height="70%" width="75%" align="center" childLayout="vertical" backgroundColor="#3043e8">
-		   		
+		   		<text id="scoresText" font="Interface/Fonts/Default.fnt" width="100%" height="100%"></text>
 	       </panel>
        </panel>
     </layer>

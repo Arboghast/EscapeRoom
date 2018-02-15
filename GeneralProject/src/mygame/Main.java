@@ -60,7 +60,7 @@ public class Main extends SimpleApplication implements ActionListener {
 	boolean winner = false;
 	private final static Trigger mouseClick = new MouseButtonTrigger(MouseInput.BUTTON_LEFT);
 	private final static String MAPPING_COLOR = "Toggle color";
-	private boolean scoreboard = false;
+	public boolean scoreboard = false;
 
 	// Temporary vectors used on each frame.
 	// They here to avoid instantiating new vectors on each frame
@@ -71,7 +71,9 @@ public class Main extends SimpleApplication implements ActionListener {
 	private Spatial crowbar;
 	private Spatial chest;
 	private Spatial key;
-
+	private int minutes;
+	private int seconds;
+	
 	public static void main(String[] args) {
 		Main app = new Main();
 		app.start();
@@ -410,11 +412,16 @@ public class Main extends SimpleApplication implements ActionListener {
 
 			File CSV = new File("EscapeRoomScoreSheet.csv");
 			CSVReader tracker = new CSVReader(CSV);
-
+			
+			String highscores = "";
+			
 			ArrayList<String> data = tracker.getRowData();
-			for (int i = 0; i < data.size(); i++) {
-				nifty.getCurrentScreen().findElementByName("help").getRenderer(TextRenderer.class).setText(data.get(i));
+			for (int i = 0; i < data.size(); i++)
+			{
+				System.out.println(data.get(i));
+				highscores = (data.get(i) + "\n");
 			}
+			nifty.getCurrentScreen().findElementById("scoresText").getRenderer(TextRenderer.class).setText(highscores);
 		}
 	}
 }
