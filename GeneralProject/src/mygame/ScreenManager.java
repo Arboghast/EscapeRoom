@@ -52,7 +52,7 @@ public class ScreenManager extends AbstractAppState implements ScreenController 
 	public void submitScore() {    
 		String input = nifty.getCurrentScreen().findNiftyControl("input", TextField.class).getText();
 
-		File CSV = new File("EscapeRoomScoreSheet.csv");      //Receives User input and adds it along with minutes and seconds to the CSV file
+		File CSV = new File("EscapeRoomScoreSheet.csv");     //Receives User input and adds it along with minutes and seconds to the CSV file
 		CSVReader tracker = new CSVReader(CSV);
 		tracker.writeToCSV(input, this.seconds, this.minutes);
 

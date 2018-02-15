@@ -62,7 +62,6 @@ public class CSVReader {
 
 	public void writeToCSV(String name, int minutes, int seconds) {
 		PrintWriter pw = null;
-
 		try 
 		{
 			pw = new PrintWriter(new File("EscapeRoomScoreSheet.csv"));
