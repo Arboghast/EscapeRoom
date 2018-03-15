@@ -29,11 +29,13 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
+import com.jme3.system.AppSettings;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 
 public class Main extends SimpleApplication implements ActionListener {
+	//Credit: https://github.com/kimlercorey/ninjahunter/blob/master/src/cmsc325/finalProject/NinjaHunter.java
 	// Creates constants that are used to create the room and the player
 	private Spatial sceneModel;
 	private BulletAppState bulletAppState;
@@ -58,6 +60,7 @@ public class Main extends SimpleApplication implements ActionListener {
 	private int removed = 0;
 	boolean thekey = false;
 	boolean winner = false;
+	private long timer2 = 0;
 	private final static Trigger mouseClick = new MouseButtonTrigger(MouseInput.BUTTON_LEFT);
 	private final static String MAPPING_COLOR = "Toggle color";
 	public boolean scoreboard = false;
@@ -76,6 +79,19 @@ public class Main extends SimpleApplication implements ActionListener {
 	
 	public static void main(String[] args) {
 		Main app = new Main();
+		
+        // Setup the launch screen
+        AppSettings Settings = new AppSettings(true);
+        Settings.setTitle("Escape Room - Final Project");
+        Settings.setVSync(true);
+        Settings.setResolution(1366,768);
+        Settings.setSettingsDialogImage("Interface/start.png");
+        Settings.setFullscreen(true);
+        app.setSettings(Settings);
+        app.setDisplayStatView(false);
+        app.setDisplayFps(false);
+
+        // Start the launch screen
 		app.start();
 	}
 
@@ -117,6 +133,7 @@ public class Main extends SimpleApplication implements ActionListener {
 		player = new CharacterControl(capsuleShape, 0.05f);
 		player.setJumpSpeed(25);
 		player.setFallSpeed(30);
+		player.setGravity(35);
 
 		player.setPhysicsLocation(new Vector3f(0, 4, 0));
 
@@ -144,28 +161,24 @@ public class Main extends SimpleApplication implements ActionListener {
 		
 
 		Box mesh = new Box(1, 1, 1);
-		Sphere mexh2 = new Sphere(32, 32, 2f);
 		geom = new Geometry("geom0", mesh);
 		Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
 		mat.setColor("Color", ColorRGBA.Blue);
 		geom.setMaterial(mat);
 		rootNode.attachChild(geom);
-		geom.setLocalTranslation(new Vector3f(15, 1, 30));
+		geom.setLocalTranslation(new Vector3f(4, 3, 70)); 
 
 		geom1 = new Geometry("geom1", mesh);
 		geom1.setMaterial(mat);
-		rootNode.attachChild(geom1);
-		geom1.setLocalTranslation(new Vector3f(15, 1, -30));
+		
 
 		geom2 = new Geometry("geom2", mesh);
 		geom2.setMaterial(mat);
-		rootNode.attachChild(geom2);
-		geom2.setLocalTranslation(new Vector3f(15, 1, 15));
+		
 
 		geom3 = new Geometry("geom3", mesh);
 		geom3.setMaterial(mat);
-		rootNode.attachChild(geom3);
-		geom3.setLocalTranslation(new Vector3f(15, 1, -15));
+		
 		
 		geom4 = new Geometry("geom4", mesh);
 		geom4.setMaterial(mat);
@@ -173,10 +186,6 @@ public class Main extends SimpleApplication implements ActionListener {
 		
 		geom5 = new Geometry("geom5", mesh);
 		geom5.setMaterial(mat);
-		
-		
-		geom6 = new Geometry("geom6", mexh2);
-		geom6.setMaterial(mat);
 		
 		geom7 = new Geometry("geom7", mesh);
 		geom7.setMaterial(mat);
@@ -186,6 +195,11 @@ public class Main extends SimpleApplication implements ActionListener {
 		
 		geom9 = new Geometry("geom9", mesh);
 		geom9.setMaterial(mat);
+		
+		geom6 = new Geometry("geom6", mesh);
+		mat.setColor("Color", ColorRGBA.Yellow);
+		geom6.setMaterial(mat);
+		
 		// to make them appear in the game world.
 		rootNode.attachChild(sceneModel);
 		bulletAppState.getPhysicsSpace().add(landscape);
@@ -252,52 +266,59 @@ public class Main extends SimpleApplication implements ActionListener {
 			rootNode.collideWith(ray, results);
 
 			// For each hit, we know distance, impact point, name of geometry.
-			// float dist = results.getCollision(i).getDistance();
+			float dist = results.getCollision(0).getDistance();
 			Vector3f pt = results.getCollision(0).getContactPoint(); 		// point where object is 'clicked on
 			String hit = results.getCollision(0).getGeometry().getName(); 		// name of the object
 			System.out.println("  You shot " + hit + " at " + pt + ". ");
 			System.out.println("one done" + removed);
-			if (!isPressed) {
-				if (hit.equals("geom0") || hit.equals("geom1") || hit.equals("geom2") || hit.equals("geom3")) {
-					rootNode.detachChild(results.getCollision(0).getGeometry());
-					removed++;
-
-				}
-				if(removed == 4)
+			if (!isPressed && dist < 8) {
+				if(hit.equals("geom0"))
 				{
+					rootNode.detachChild(geom);
+					rootNode.attachChild(geom1);
+					geom1.setLocalTranslation(new Vector3f(53, 3, -97));
+				}
+				if(hit.equals("geom1"))
+				{
+					rootNode.detachChild(geom1);
+					rootNode.attachChild(geom2);
+					geom2.setLocalTranslation(new Vector3f(-50, (float) 5.3, 69));
+				}
+				if(hit.equals("geom2"))
+				{
+					rootNode.detachChild(geom2);
+					rootNode.attachChild(geom3);
+					geom3.setLocalTranslation(new Vector3f(-50, (float) 5.3, 78));
+				}
+				if(hit.equals("geom3"))
+				{
+					rootNode.detachChild(geom3);
 					rootNode.attachChild(geom4);
-					geom4.setLocalTranslation(new Vector3f(15, 3, -80));
-					removed = 0;
+					geom4.setLocalTranslation(new Vector3f(-34, 20, (float) -80.95));
 				}
 				if(hit.equals("geom4"))
 				{
 					rootNode.detachChild(geom4);
-					thekey = true;
-					
-				}
-				if(thekey)
-				{
 					rootNode.attachChild(geom5);
-					geom5.setLocalTranslation(new Vector3f(15, 3, 45));
-					thekey = false;
+					geom5.setLocalTranslation(new Vector3f((float) -45.85, 33, -84));
 				}
 				if(hit.equals("geom5"))
 				{
 					rootNode.detachChild(geom5);
 					rootNode.attachChild(geom7);
-					geom7.setLocalTranslation(new Vector3f(15, 15, 45));
+					geom7.setLocalTranslation(new Vector3f(20,45,80));
 				}
 				if(hit.equals("geom7"))
 				{
 					rootNode.detachChild(geom7);
 					rootNode.attachChild(geom8);
-					geom8.setLocalTranslation(new Vector3f(45, 15, 45));
+					geom8.setLocalTranslation(new Vector3f((float) -45.85, (float) 39.5, -8));
 				}
 				if(hit.equals("geom8"))
 				{
 					rootNode.detachChild(geom8);
 					rootNode.attachChild(geom6);
-					geom6.setLocalTranslation(new Vector3f(15, 15, -45));
+					geom6.setLocalTranslation(new Vector3f((float)-6.5, 43, 0));
 				}
 				if(hit.equals("geom6"))
 				{
@@ -381,7 +402,7 @@ public class Main extends SimpleApplication implements ActionListener {
 				duration++;
 				timer = System.currentTimeMillis();
 			}
-
+			
 			// update HUD Display
 			minutes = duration / 60;
 			String formattedH = String.format("%02d", minutes);
@@ -394,13 +415,15 @@ public class Main extends SimpleApplication implements ActionListener {
 
 			// Code To trigger Endgame Screen
 			if (winner) {
-				guiNode.detachAllChildren();
-				flyCam.setEnabled(false);
-				isRunning = false;
-				nifty.gotoScreen("endgame");
-				ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("endgame").getScreenController();
-				screenControl.addScore(minutes, seconds); //Use this to pass in game time to csv
-				stateManager.attach((AppState) screenControl3);
+				
+					guiNode.detachAllChildren();
+					flyCam.setEnabled(false);
+					isRunning = false;
+					nifty.gotoScreen("endgame");
+					ScreenManager screenControl3 = (ScreenManager) nifty.getScreen("endgame").getScreenController();
+					screenControl.addScore(minutes, seconds); //Use this to pass in game time to csv
+					stateManager.attach((AppState) screenControl3);
+				
 			}
 		}
 		if (scoreboard) {

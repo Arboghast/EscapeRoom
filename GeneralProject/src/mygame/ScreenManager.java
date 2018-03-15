@@ -55,9 +55,9 @@ public class ScreenManager extends AbstractAppState implements ScreenController 
 		File CSV = new File("EscapeRoomScoreSheet.csv");     //Receives User input and adds it along with minutes and seconds to the CSV file
 		CSVReader tracker = new CSVReader(CSV);
 		tracker.writeToCSV(input, this.minutes, this.seconds);
-
+		
+		
 		app.scoreboard = true;
-		nifty.gotoScreen("scoreboard");
 	}
 
 	public void bind(Nifty nifty, Screen screen) {
