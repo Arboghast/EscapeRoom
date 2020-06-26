@@ -27,5 +27,3 @@ For some reason, our final product seems to be on the 'Backend' branch, so go th
 (2) add the contents of '/jar/gg/lib' to GeneralProject's build path                                                                       
 (3) Run the main.java file located at '/GeneralProject/src/mygame/Main.java'                                                                                                                                                                                                                
 
-ps: a lot of the functionality of the game has been broken since I last opened this project ~ 14 months ago, it is just a room with objects now...do as you please.
-
