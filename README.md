@@ -22,8 +22,7 @@ https://hub.jmonkeyengine.org/t/creating-a-room-help-me-please/12408/4
 https://jmonkeyengine.github.io/wiki/jme3/advanced/nifty_gui_java_interaction.html
 
 --------------------------------------------------------------------------------------------------------------------------
-4/1/2019
-For some reason, our final product seems to be on the 'Backend' branch, so go there (1).                                                   
+(1) Goto 'Backend' branch.                                                 
 (2) add the contents of '/jar/gg/lib' to GeneralProject's build path                                                                       
 (3) Run the main.java file located at '/GeneralProject/src/mygame/Main.java'                                                                                                                                                                                                                
 
